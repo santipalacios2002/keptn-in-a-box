@@ -562,7 +562,7 @@ keptnInstallClient() {
   wget -q -O keptn.tar.gz "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/keptn-${KEPTN_VERSION}-linux-amd64.tar.gz"
   gunzip keptn.tar.gz
   tar -xvf keptn.tar
-  chmod +x keptn
+  chmod +x keptn-0.8.0-rc1-linux-amd64
   mv keptn-0.8.0-rc1-linux-amd64 /usr/local/bin/keptn
   printInfo "Remove keptn.tar"
   rm keptn.tar
