@@ -6,11 +6,11 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="release-0.7.3.2"
+KIAB_RELEASE="release-0.8"
 ISTIO_VERSION=1.5.1
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.7.3
+KEPTN_VERSION=0.8.0-rc1
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
@@ -25,7 +25,7 @@ MICROK8S_CHANNEL="1.18/stable"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 KEPTN_EXAMPLES_DIR="~/examples"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
-KEPTN_IN_A_BOX_REPO="https://github.com/dthotday-performance/keptn-in-a-box.git"
+KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_CATALOG_DIR="~/overview"
 JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
 ALT_JMETER_SERVICE_BRANCH="release-0.7.3-patch1"
@@ -558,7 +558,8 @@ hostAliasPod() {
 
 keptnInstallClient() {
   printInfoSection "Download Keptn $KEPTN_VERSION"
-  wget -q -O keptn.tar "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/${KEPTN_VERSION}_keptn-linux.tar"
+  #wget -q -O keptn.tar "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/${KEPTN_VERSION}_keptn-linux.tar"
+  wget -q -O keptn.tar.gz "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/keptn-${KEPTN_VERSION}-linux-amd64.tar.gz"
   tar -xvf keptn.tar
   chmod +x keptn
   mv keptn /usr/local/bin/keptn

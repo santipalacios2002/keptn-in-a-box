@@ -118,9 +118,9 @@ DOMAIN="kiab.pcjeffint.com"
 #      ----- Functions Location -----              #
 # ==================================================
 # - Keptn in a Box release
-KIAB_RELEASE="release-0.7.3.2"
+KIAB_RELEASE="release-0.8"
 # - Functions file location
-FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
+FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
 
 ## ----  Write all output to the logfile ----
 if [ "$pipe_log" = true ] ; then
