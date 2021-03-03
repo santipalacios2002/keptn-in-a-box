@@ -560,6 +560,7 @@ keptnInstallClient() {
   printInfoSection "Download Keptn $KEPTN_VERSION"
   #wget -q -O keptn.tar "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/${KEPTN_VERSION}_keptn-linux.tar"
   wget -q -O keptn.tar.gz "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/keptn-${KEPTN_VERSION}-linux-amd64.tar.gz"
+  gunzip keptn.tar.gz
   tar -xvf keptn.tar
   chmod +x keptn
   mv keptn /usr/local/bin/keptn
