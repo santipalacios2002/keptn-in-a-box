@@ -16,7 +16,7 @@ KEPTN_DT_SERVICE_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.7.1
 # https://github.com/keptn/examples
-KEPTN_EXAMPLES_BRANCH="release-0.7.3"
+KEPTN_EXAMPLES_BRANCH="release-0.8.0"
 KEPTN_CATALOG_BRANCH="rc8"
 TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
