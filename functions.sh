@@ -592,6 +592,8 @@ keptnInstall() {
     fi
     printInfoSection "Routing for the Keptn Services via NGINX Ingress"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} api-keptn-ingress"
+    printInfoSection "Deploy keptn config service with hosts alias"
+    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/release-0.8.0-alpha/configuration-service/deploy/service.yaml -n keptn --record"
     waitForAllPods
     #We sleep for 5 seconds to give time the Ingress to be ready 
     sleep 30
@@ -638,7 +640,6 @@ gitDeploy() {
     printInfoSection "Deploying self-hosted GIT(ea) service via Helm."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash deploy-gitea.sh ${DOMAIN}"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
-    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/release-0.8.0-alpha/configuration-service/deploy/service.yaml -n keptn --record"
     waitForAllPods
   fi
 }
