@@ -629,6 +629,7 @@ jenkinsDeploy() {
     printInfoSection "Deploying Jenkins via Helm. This Jenkins is configured and managed 'as code'"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/jenkins && bash deploy-jenkins.sh ${DOMAIN}"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} jenkins"
+    waitForAllPods
   fi
 }
 
@@ -637,6 +638,8 @@ gitDeploy() {
     printInfoSection "Deploying self-hosted GIT(ea) service via Helm."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash deploy-gitea.sh ${DOMAIN}"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
+    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/release-0.8.0-alpha/configuration-service/deploy/service.yaml -n keptn --record"
+    waitForAllPods
   fi
 }
 
