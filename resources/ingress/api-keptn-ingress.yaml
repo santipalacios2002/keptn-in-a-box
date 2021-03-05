@@ -21,9 +21,12 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: api-gateway-nginx
-          servicePort: 80
-        path: /
+         service:
+           name: api-gateway-nginx
+           port: 
+             number: 80
+         path: /
+         pathType: Exact
   tls:
   - hosts:
     - keptn.domain.placeholder

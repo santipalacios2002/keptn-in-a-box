@@ -14,9 +14,12 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: gitea-http
-          servicePort: 3000
-        path: /
+         service:
+           name: gitea-http
+           port:
+             number: 3000
+         path: /
+         pathType: Exact
   tls:
   - hosts:
     - git.domain.placeholder

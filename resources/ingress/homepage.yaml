@@ -23,9 +23,12 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: homepage
-          servicePort: 80
-        path: /
+         service:
+           name: homepage
+           port:
+             number: 80
+         path: /
+         pathType: Exact
   tls:
   - hosts:
     - domain.placeholder

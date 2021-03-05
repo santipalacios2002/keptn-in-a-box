@@ -23,9 +23,12 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: front-end
-          servicePort: 80
-        path: /
+         service:
+           name: front-end
+           port:
+             number: 80
+         path: /
+         pathType: Exact
   tls:
   - hosts:
     - catalog.front-end.domain.placeholder
