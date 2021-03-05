@@ -5,6 +5,8 @@ if [[ -d "catalog" ]]; then
     
     # The context for this script needs to be in examples/onboarding-carts
     echo "load shipyard.yaml"
+    cat shipyard.yaml
+    
     keptn create project keptnorders --shipyard=./shipyard.yaml
     
     # Onboarding - prepare  Keptn
