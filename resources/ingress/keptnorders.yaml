@@ -22,53 +22,53 @@ spec:
   - host: frontend.keptnorders-production.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port:
-             number: 80
-         path: /
-         pathType: Exact  
+       - path: /
+         pathType: Exact       
+         backend:
+           service:
+             name: istio-ingressgateway
+             port:
+               number: 80
   - host: frontend.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port:
-             number: 80
-         path: /
-         pathType: Exact  
+       - path: /
+         pathType: Exact     
+         backend:
+           service:
+             name: istio-ingressgateway
+             port:
+               number: 80
   - host: catalog.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port:
-             number: 80
-         path: /
-         pathType: Exact    
+       - path: /
+         pathType: Exact       
+         backend:
+           service:
+             name: istio-ingressgateway
+             port:
+               number: 80
   - host: customer.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port:
-             number: 80
-         path: /
-         pathType: Exact  
+       - path: /
+         pathType: Exact       
+         backend:
+           service:
+             name: istio-ingressgateway
+             port:
+               number: 80
   - host: order.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port: 
-             number: 80
-         path: /
-         pathType: Exact                                  
+       - path: /
+         pathType: Exact      
+         backend:
+           service:
+             name: istio-ingressgateway
+             port: 
+               number: 80                   
   tls:
   - hosts:
     - frontend.keptnorders-production.domain.placeholder

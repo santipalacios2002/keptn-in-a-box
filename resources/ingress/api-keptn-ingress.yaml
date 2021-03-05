@@ -20,13 +20,13 @@ spec:
   - host: keptn.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: api-gateway-nginx
-           port: 
-             number: 80
-         path: /
-         pathType: Exact
+        - path: /
+          pathType: Exact
+          backend:
+            service:
+              name: api-gateway-nginx
+              port: 
+                number: 80
   tls:
   - hosts:
     - keptn.domain.placeholder

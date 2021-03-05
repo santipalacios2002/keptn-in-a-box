@@ -22,13 +22,13 @@ spec:
   - host: catalog.front-end.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: front-end
-           port:
-             number: 80
-         path: /
-         pathType: Exact
+       - path: /
+         pathType: Exact      
+         backend:
+           service:
+            name: front-end
+            port:
+              number: 80
   tls:
   - hosts:
     - catalog.front-end.domain.placeholder

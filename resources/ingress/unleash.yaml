@@ -23,13 +23,13 @@ spec:
   - host: unleash.unleash-dev.domain.placeholder
     http:
       paths:
-      - backend:
-         service:
-           name: istio-ingressgateway
-           port:
-             number: 80
-         path: /
-         pathType: Exact
+       - path: /
+         pathType: Exact      
+         backend:
+           service:
+             name: istio-ingressgateway
+             port:
+               number: 80
   tls:
   - hosts:
     - unleash.unleash-dev.domain.placeholder
