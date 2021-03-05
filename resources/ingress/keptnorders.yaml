@@ -14,7 +14,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     #cert-manager.io/cluster-issuer: "letsencrypt"
   name: keptnorders-ingress
-  namespace: istio-system
+  namespace: default
 spec:
   rules:
   # On base domain we have NGINX running.
@@ -26,17 +26,17 @@ spec:
          pathType: Prefix       
          backend:
            service:
-             name: istio-ingressgateway
+             name: frontend
              port:
                number: 80
   - host: frontend.keptnorders-staging.domain.placeholder
     http:
       paths:
        - path: /
-         pathType: ImplementationSpecific     
+         pathType: Prefix     
          backend:
            service:
-             name: istio-ingressgateway
+             name: frontend
              port:
                number: 80
   - host: catalog.keptnorders-staging.domain.placeholder
@@ -46,7 +46,7 @@ spec:
          pathType: Prefix       
          backend:
            service:
-             name: istio-ingressgateway
+             name: catalog
              port:
                number: 80
   - host: customer.keptnorders-staging.domain.placeholder
@@ -56,7 +56,7 @@ spec:
          pathType: Prefix       
          backend:
            service:
-             name: istio-ingressgateway
+             name: customer
              port:
                number: 80
   - host: order.keptnorders-staging.domain.placeholder
@@ -66,7 +66,7 @@ spec:
          pathType: Prefix      
          backend:
            service:
-             name: istio-ingressgateway
+             name: order
              port: 
                number: 80                   
   tls:
