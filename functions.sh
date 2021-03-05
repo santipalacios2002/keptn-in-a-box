@@ -135,7 +135,7 @@ installationBundleDemo() {
   keptndemo_unleash=true
   keptndemo_cartsonboard=false
   # use for order application
-  keptndemo_catalogonboard=false
+  keptndemo_catalogonboard=true
   keptndashboard_load=false
   createMetrics=true
   
