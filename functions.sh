@@ -453,8 +453,6 @@ istioInstall() {
   if [ "$istio_install" = true ]; then
     printInfoSection "Install istio $ISTIO_VERSION into /opt and add it to user/local/bin"
     curl -L https://istio.io/downloadIstio | ISTIO_VERSION=$ISTIO_VERSION sh -
-    rm -rf /opt/istio-*
-    rm /usr/local/bin/istioctl
     printInfoSection "now move files and create symlink"
     mv istio-$ISTIO_VERSION /opt/istio-$ISTIO_VERSION
     chmod +x -R /opt/istio-$ISTIO_VERSION/
