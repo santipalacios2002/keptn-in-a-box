@@ -16,6 +16,13 @@ metadata:
   name: keptnorders-ingress
   namespace: istio-system
 spec:
+  tls:
+  - hosts: 
+    - frontend.keptnorders-production.domain.placeholder
+    - frontend.keptnorders-staging.domain.placeholder
+    - catalog.keptnorders-staging.domain.placeholder
+    - customer.keptnorders-staging.domain.placeholder
+    - order.keptnorders-staging.domain.placeholder
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
@@ -26,7 +33,7 @@ spec:
          pathType: Prefix       
          backend:
            service:
-             name: frontend
+             name: frontend-prod
              port:
                number: 80
   - host: frontend.keptnorders-staging.domain.placeholder
@@ -36,7 +43,7 @@ spec:
          pathType: Prefix     
          backend:
            service:
-             name: frontend
+             name: frontend-staging
              port:
                number: 80
   - host: catalog.keptnorders-staging.domain.placeholder
@@ -69,11 +76,3 @@ spec:
              name: order
              port: 
                number: 80                   
-  tls:
-  - hosts:
-    - frontend.keptnorders-production.domain.placeholder
-    - frontend.keptnorders-staging.domain.placeholder
-    - catalog.keptnorders-staging.domain.placeholder
-    - customer.keptnorders-staging.domain.placeholder
-    - order.keptnorders-staging.domain.placeholder
-    #secretName: frontend-tls
