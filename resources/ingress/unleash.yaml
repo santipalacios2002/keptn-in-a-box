@@ -16,9 +16,9 @@ metadata:
   name: unleash-ingress
   namespace: istio-system
 spec:
-  #tls:
-  #- hosts: 
-  #    - unleash.unleash-dev.domain.placeholder
+  tls:
+  - hosts: 
+      - unleash.unleash-dev.domain.placeholder
     #secretName: unleash.unleash-dev.domain.placeholder
   rules:
   # Wildcard routing for all exposed istio services. 
