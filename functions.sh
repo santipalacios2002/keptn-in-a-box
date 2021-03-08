@@ -668,7 +668,6 @@ dynatraceConfigureMonitoring() {
     
     waitForAllPods
     bashas "keptn configure monitoring dynatrace"
-    waitForAllPods
   fi
 }
 
@@ -691,7 +690,7 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-
+    waitForAllPods
     printInfoSection "Expose Unleash-Server"
     #TODO Add Unleash Remediation via bash/curl/yaml
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
