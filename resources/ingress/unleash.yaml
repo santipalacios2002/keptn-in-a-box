@@ -28,7 +28,7 @@ spec:
     http:
       paths:
        - path: /
-         pathType: Direct      
+         pathType: Exact      
          backend:
            service:
              name: unleash
