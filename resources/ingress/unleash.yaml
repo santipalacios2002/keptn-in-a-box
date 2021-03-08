@@ -28,9 +28,9 @@ spec:
     http:
       paths:
        - path: /
-         pathType: Prefix      
+         pathType: Direct      
          backend:
            service:
              name: unleash
              port:
-               number: 4242
+               number: 80
