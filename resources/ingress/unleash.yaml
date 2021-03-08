@@ -33,4 +33,4 @@ spec:
            service:
              name: unleash-dev
              port:
-               number: 80
+               number: 4242
