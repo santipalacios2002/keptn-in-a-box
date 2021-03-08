@@ -629,6 +629,7 @@ jenkinsDeploy() {
   if [ "$jenkins_deploy" = true ]; then
     printInfoSection "Deploying Jenkins via Helm. This Jenkins is configured and managed 'as code'"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/jenkins && bash deploy-jenkins.sh ${DOMAIN}"
+    waitForAllPods
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} jenkins"
   fi
 }
@@ -637,6 +638,7 @@ gitDeploy() {
   if [ "$git_deploy" = true ]; then
     printInfoSection "Deploying self-hosted GIT(ea) service via Helm."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash deploy-gitea.sh ${DOMAIN}"
+    waitForAllPods
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
   fi
 }
