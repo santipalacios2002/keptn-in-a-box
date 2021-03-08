@@ -17,7 +17,7 @@ metadata:
   namespace: istio-system
 spec:
   tls:
-  - host: 
+  - hosts: 
       - unleash.unleash-dev.domain.placeholder
     #secretName: unleash.unleash-dev.domain.placeholder
   rules:
