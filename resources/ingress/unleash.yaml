@@ -12,7 +12,7 @@ metadata:
     # from the specified path in the Ingress rule. Without a
     # rewrite any request will return 404
     nginx.ingress.kubernetes.io/rewrite-target: /
-    #cert-manager.io/cluster-issuer: "letsencrypt"
+    cert-manager.io/cluster-issuer: "letsencrypt"
   name: unleash-ingress
   namespace: istio-system
 spec:
