@@ -16,6 +16,10 @@ metadata:
   name: unleash-ingress
   namespace: istio-system
 spec:
+  tls:
+  - host: 
+      - unleash.unleash-dev.domain.placeholder
+    #secretName: unleash.unleash-dev.domain.placeholder
   rules:
   # Wildcard routing for all exposed istio services. 
   # Kubernetes Fake Certificate will be used if hostname 
@@ -30,7 +34,3 @@ spec:
              name: unleash-dev
              port:
                number: 80
-  tls:
-  - hosts:
-    - unleash.unleash-dev.domain.placeholder
-    #secretName: unleash-tls
