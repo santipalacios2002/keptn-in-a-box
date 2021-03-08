@@ -13,7 +13,8 @@ if [[ -d "unleash" ]]; then
     # Configure Keptn
     kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
 
-    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.0/deploy/service.yaml
+    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.0/deploy/service.yaml -n keptn
+    #kubectl apply -f https://github.com/keptn-contrib/unleash-service/tree/release-0.3.0/deploy/service.yaml -n keptn
     # TODO Adding the remediation is still needed
 else 
     echo "The helmcharts for unleash are not present"
