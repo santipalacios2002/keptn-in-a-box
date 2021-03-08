@@ -31,6 +31,6 @@ spec:
          pathType: Prefix      
          backend:
            service:
-             name: unleash-dev
+             name: unleash
              port:
                number: 4242
