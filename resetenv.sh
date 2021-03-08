@@ -3,9 +3,9 @@
 # 
 # Use this script to reset the environment
 #
-KEPTN_IN_A_BOX_REPO="https://github.com/dthotday-performance/keptn-in-a-box.git"
-KIAB_RELEASE="release-0.7.3.2"
-KIAB_FILE_REPO="https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh"
+KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
+KIAB_RELEASE="release-0.8pre"
+KIAB_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh"
 
 sudo snap remove microk8s --purge
 
@@ -28,6 +28,10 @@ sudo rm -rf .keptn
 sudo rm -rf .kube
 
 sudo rm /tmp/install.log
+
+sudo rm -rf /opt/istio-*
+sudo rm /usr/local/bin/istioctl
+sudo rm /usr/local/bin/keptn
 
 curl -O $KIAB_FILE_REPO
 chmod +x keptn-in-a-box.sh
