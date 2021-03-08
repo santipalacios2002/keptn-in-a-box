@@ -55,7 +55,7 @@ spec:
            service:
              name: catalog
              port:
-               number: 80
+               number: 8080
   - host: customer.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -65,7 +65,7 @@ spec:
            service:
              name: customer
              port:
-               number: 80
+               number: 8080
   - host: order.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -75,4 +75,4 @@ spec:
            service:
              name: order
              port: 
-               number: 80                   
+               number: 8080                   
