@@ -97,6 +97,8 @@ expose_kubernetes_dashboard=false
 patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
+
+patch_config_service=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
 #  Each bundle has a set of modules (or functions) that will be        #
@@ -148,6 +150,7 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=true
+  patch_config_service=true
 }
 
 installationBundleWorkshop() {
@@ -603,8 +606,6 @@ keptnInstall() {
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
     bashas "keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN"
-    ## use to set host alias
-    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/configuration-service/deploy/service.yaml -n keptn --record"
     waitForAllPods
   fi
 }
@@ -735,13 +736,21 @@ patchKubernetesDashboard() {
   fi
 }
 
+patchConfigService() {
+  if [ "$patch_config_service" = true ]; then
+    ## use to set host alias
+    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/configuration-service/deploy/service.yaml -n keptn --record"
+    waitForAllPods
+  fi
+}
+
+
 keptndemoCartsonboard() {
   if [ "$keptndemo_cartsonboard" = true ]; then
     printInfoSection "Keptn onboarding Carts"
     #TODO Parameterize Carts Version.
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts_qualitygates.sh"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_carts_0.sh"
-
     printInfoSection "Keptn Exposing the Onboarded Carts Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop"
   fi
@@ -757,7 +766,6 @@ keptndemoCatalogonboard() {
     #sleep 5
     #printInfoSection "Keptn Exposing the Onboarded orders Application"
     #bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
-    
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
   fi
@@ -861,7 +869,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_cartsonboard,keptndemo_catalogonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_cartsonboard,keptndemo_catalogonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -943,6 +951,9 @@ doInstallation() {
   gitMigrate
   createWorkshopUser
   certmanagerEnable
+  
+  patchConfigService
+  
   printInstalltime
 }
 
