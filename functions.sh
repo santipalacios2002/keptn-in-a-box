@@ -2,7 +2,9 @@
 # This file contains the functions for installing Keptn-in-a-Box.
 # Each function contains a boolean flag so the installations
 # can be highly customized.
-
+#
+# TODO: cleanup script, check versions
+#
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
@@ -28,7 +30,7 @@ KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_CATALOG_DIR="~/overview"
 JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
-ALT_JMETER_SERVICE_BRANCH="release-0.7.3-patch1"
+ALT_JMETER_SERVICE_BRANCH="release-0.8.0-alpha"
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
 # this is just needed when spinning machines programatically and running the script with root without an interactive shell
@@ -601,6 +603,9 @@ keptnInstall() {
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
     bashas "keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN"
+    ## use to set host alias
+    bashas "sudo kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/configuration-service/deploy/service.yaml -n keptn --record"
+    waitForAllPods
   fi
 }
 
@@ -614,7 +619,7 @@ jmeterService() {
   ## User for jmeter mint
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
   printInfoSection "JMeter Service for keptn 0.8.0"
-  bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/release-0.8.0-alpha/jmeter-service/deploy/service.yaml -n keptn --record"
+  bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
   waitForAllPods
   fi
 }
