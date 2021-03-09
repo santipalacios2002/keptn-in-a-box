@@ -137,7 +137,7 @@ installationBundleDemo() {
   # use for order application
   keptndemo_catalogonboard=true
   keptndashboard_load=false
-  createMetrics=true
+  createMetrics=false
   
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
@@ -610,9 +610,12 @@ jmeterService() {
   # Original to KIAB
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
   # use with newer version of Keptn - Stable
-  bashas "kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptncontrib/jmeter-extended-service:0.2.0 --record"
+  #bashas "kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptncontrib/jmeter-extended-service:0.2.0 --record"
   ## User for jmeter mint
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
+  printInfoSection "JMeter Service for keptn 0.8.0"
+  bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/release-0.8.0-alpha/jmeter-service/deploy/service.yaml -n keptn --record"
+  waitForAllPods
   fi
 }
 
@@ -744,9 +747,9 @@ keptndemoCatalogonboard() {
     printInfoSection "Keptn onboarding Catalog"
     #TODO Parameterize Catalog Version.
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
-    sleep 5
+    #sleep 5
     #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.sh"
-    sleep 5
+    #sleep 5
     #printInfoSection "Keptn Exposing the Onboarded orders Application"
     #bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     
