@@ -5,7 +5,7 @@ node {
     properties([
         parameters([
          string(defaultValue: 'qualitygate', description: 'Name of your Project for Quality Gate Feedback ', name: 'Project', trim: false), 
-         string(defaultValue: 'qualitystage', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
+         string(defaultValue: 'hardening', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
          string(defaultValue: 'evalservice', description: 'Name of the Tag for identifyting the service to validate the SLIs and SLOs', name: 'Service', trim: false),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['basic', 'perftest'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
@@ -19,7 +19,7 @@ node {
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/keptn/examples/release-0.8.0/onboarding-carts/shipyard-quality-gates.yaml", 'keptn/shipyard.yaml')
+        //keptn.downloadFile("https://raw.githubusercontent.com/keptn/examples/release-0.8.0/onboarding-carts/shipyard-quality-gates.yaml", 'keptn/shipyard.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
