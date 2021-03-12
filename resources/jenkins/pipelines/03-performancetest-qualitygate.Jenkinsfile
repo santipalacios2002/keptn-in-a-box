@@ -16,7 +16,7 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        // keptn.downloadFile('https://raw.githubusercontent.com/keptn-sandbox/performance-testing-as-selfservice-tutorial/release-0.7.3/shipyard.yaml', 'keptn/shipyard.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/dthotday-performance/overview/rc8-pre/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
@@ -29,6 +29,7 @@ node {
         keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}" // , shipyard:'shipyard.yaml'
 
         // Upload all the files
+        keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
         keptn.keptnAddResources('keptn/dynatrace/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
