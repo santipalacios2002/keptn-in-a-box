@@ -758,14 +758,16 @@ keptndemoCartsonboard() {
 
 keptndemoCatalogonboard() {
   if [ "$keptndemo_catalogonboard" = true ]; then
-    printInfoSection "Keptn onboarding Catalog"
+    printInfoSection "Keptn onboarding orders application"
     #TODO Parameterize Catalog Version.
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
-    #sleep 5
-    #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.sh"
-    #sleep 5
-    #printInfoSection "Keptn Exposing the Onboarded orders Application"
-    #bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
+    # start customer and catalog
+    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.1.sh"
+    waitForAllPods
+    # start order and frontend
+    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
+    printInfoSection "Keptn Exposing the Onboarded orders Application"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
   fi
