@@ -25,6 +25,9 @@ waitForAllPods() {
   fi
 }
 
+printInfo() {
+  echo "[Keptn-In-A-Box|INFO] $(timestamp) |>->-> $1 <-<-<|"
+}
 
 # Trigger the deployment
 keptn trigger delivery --project=keptnorders --service=catalog --image=docker.io/dtdemos/dt-orders-catalog-service --tag=1
