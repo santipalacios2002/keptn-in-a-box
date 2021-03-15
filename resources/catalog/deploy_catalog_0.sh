@@ -1,4 +1,20 @@
-#!/bin/bash -x
+#!/bin/bash
+
+# ======================================================================
+#          ------- Util Functions -------                              #
+#  A set of util functions for logging, validating and                 #
+#  executing commands.                                                 #
+# ======================================================================
+thickline="======================================================================"
+halfline="============"
+thinline="______________________________________________________________________"
+
+setBashas() {
+  # Wrapper for runnig commands for the real owner and not as root
+  alias bashas="sudo -H -u ${USER} bash -c"
+  # Expand aliases for non-interactive shell
+  shopt -s expand_aliases
+}
 
 # FUNCTIONS DECLARATIONS
 timestamp() {
@@ -31,7 +47,7 @@ waitForAllPods() {
   RETRY=0
   RETRY_MAX=60
   # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
-  CMD="bashas \"kubectl get pods -A -n keptnorders-staging 2>&1 | grep -c -v -E '(Running|Completed|Terminating|STATUS)'\""
+  CMD="bashas \"kubectl get pods -A 2>&1 | grep -c -v -E '(Running|Completed|Terminating|STATUS)'\""
   printInfo "Checking and wait for all pods to run."
   while [[ $RETRY -lt $RETRY_MAX ]]; do
     pods_not_ok=$(eval "$CMD")
