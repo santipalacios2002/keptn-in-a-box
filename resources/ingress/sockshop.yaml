@@ -21,21 +21,21 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: istio-ingressgateway
+          serviceName: carts
           servicePort: 80
         path: /
   - host: carts.sockshop-staging.domain.placeholder
     http:
       paths:
       - backend:
-          serviceName: istio-ingressgateway
+          serviceName: carts
           servicePort: 80
         path: /
   - host: carts.sockshop-production.domain.placeholder
     http:
       paths:
       - backend:
-          serviceName: istio-ingressgateway
+          serviceName: carts
           servicePort: 80
         path: /
   tls:
