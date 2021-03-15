@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Wrapper for runnig commands for the real owner and not as root
+alias bashas="sudo -H -u ${USER} bash -c"
+# Expand aliases for non-interactive shell
+shopt -s expand_aliases
+
 # ======================================================================
 #          ------- Util Functions -------                              #
 #  A set of util functions for logging, validating and                 #
