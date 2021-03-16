@@ -1,0 +1,4 @@
+#!/bin/bash
+# perform steps for keptn 0.8.0
+
+keptn configure monitoring dynatrace --project=performance
