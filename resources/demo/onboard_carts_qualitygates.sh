@@ -9,7 +9,13 @@ if [[ -d "carts" ]]; then
 
     keptn configure monitoring dynatrace --project=sockshop
 
+    echo "Setting up QualityGate to Dev"
+    keptn add-resource --project=sockshop --stage=dev --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
+
     echo "Setting up QualityGate to Staging"
+    keptn add-resource --project=sockshop --stage=staging --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
+    
+    echo "Setting up QualityGate to Production"
     keptn add-resource --project=sockshop --stage=staging --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
 
 else 
