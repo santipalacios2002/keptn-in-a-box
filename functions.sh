@@ -517,9 +517,11 @@ certmanagerEnable() {
 
 keptndemoDeployCartsloadgenerator() {
   # https://github.com/sergiohinojosa/keptn-in-a-box/resources/cartsloadgenerator
+  # changed to put in the load namespace
   if [ "$keptndemo_cartsload" = true ]; then
     printInfoSection "Deploy Cartsload Generator"
-    bashas "kubectl create deploy cartsloadgen --image=shinojosa/cartsloadgen:keptn"
+    bashas "kubectl create namespace load"
+    bashas "kubectl create deploy cartsloadgen --image=shinojosa/cartsloadgen:keptn -n load"
   fi
 }
 
