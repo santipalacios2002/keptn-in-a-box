@@ -4,7 +4,7 @@
 if [[ -d "carts" ]]; then
     # The context for this script needs to be in examples/onboarding-carts
     keptn create project sockshop --shipyard=./shipyard.yaml
-    keptn add-resource --project=sockshop --resource=shipyard.yaml --resourceUri=shipyard.yaml
+    keptn add-resource --project=sockshop --resource=./shipyard.yaml --resourceUri=shipyard.yaml
     # Onboarding - prepare  Keptn
     keptn onboard service carts --project=sockshop --chart=./carts
     keptn add-resource --project=sockshop --stage=dev --service=carts --resource=jmeter/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
