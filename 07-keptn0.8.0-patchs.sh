@@ -3,7 +3,7 @@
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
 
-cd $KEPTN_IN_A_BOX_DIR/resources/gitea/
+cd ~/keptn-in-a-box/resources/gitea
 ./update-git-keptn-post-flight.sh
 
 
