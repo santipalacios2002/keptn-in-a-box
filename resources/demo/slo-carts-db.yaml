@@ -10,10 +10,10 @@ objectives:
     key_sli: false
     pass:
       - criteria:
-          - "<=+1%"
+          - "<=+10%"
     warning:
       - criteria:
-          - "<=+5%"
+          - "<=+20%"
     weight: 1
 total_score:
   pass: "90%"
