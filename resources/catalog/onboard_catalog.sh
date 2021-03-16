@@ -6,7 +6,7 @@ if [[ -d "catalog" ]]; then
     # The context for this script needs to be in examples/onboarding-carts
     echo "load shipyard.yaml"
     keptn create project keptnorders --shipyard=./shipyard.yaml
-    keptn add-resource --project=keptnorders --resource=shipyard.yaml --resourceUri=shipyard.yaml
+    keptn add-resource --project=keptnorders --resource=./shipyard.yaml --resourceUri=shipyard.yaml
     # Onboarding - prepare  Keptn
     echo "onboard services"
     keptn onboard service order --project=keptnorders --chart=./order
