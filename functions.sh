@@ -135,9 +135,9 @@ installationBundleDemo() {
   dynatrace_configure_workloads=true
 
   keptndeploy_homepage=true
-  keptndemo_cartsload=false
+  keptndemo_cartsload=true
   keptndemo_unleash=true
-  keptndemo_cartsonboard=false
+  keptndemo_cartsonboard=true
   # use for order application
   keptndemo_catalogonboard=true
   keptndashboard_load=false
