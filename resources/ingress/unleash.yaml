@@ -14,7 +14,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     #cert-manager.io/cluster-issuer: "letsencrypt"
   name: unleash-ingress
-  namespace: unleash-dev
+  namespace: istio-system
 spec:
   rules:
   # Wildcard routing for all exposed istio services. 
