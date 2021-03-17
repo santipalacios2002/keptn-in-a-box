@@ -12,15 +12,13 @@ if [[ -d "carts" ]]; then
 
     echo "Setting up QualityGate to Dev"
     keptn add-resource --project=sockshop --stage=dev --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
-    keptn add-resource --project=sockshop --stage=dev --service=carts-db --resource=slo-carts-db.yaml --resourceUri=slo.yaml
-
+    
     echo "Setting up QualityGate to Staging"
     keptn add-resource --project=sockshop --stage=staging --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
-    keptn add-resource --project=sockshop --stage=staging --service=carts-db --resource=slo-carts-db.yaml --resourceUri=slo.yaml
+    
     echo "Setting up QualityGate to Production"
     keptn add-resource --project=sockshop --stage=production --service=carts --resource=slo-quality-gates.yaml --resourceUri=slo.yaml
-    keptn add-resource --project=sockshop --stage=production --service=carts-db --resource=slo-carts-db.yaml --resourceUri=slo.yaml
-
+    
 else 
     echo "The helmcharts for carts are not present"
 fi 
