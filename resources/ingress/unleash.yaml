@@ -24,7 +24,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: istio-ingressgateway
+          serviceName: unleash
           servicePort: 80
         path: /
   tls:
