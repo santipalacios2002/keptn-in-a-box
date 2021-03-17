@@ -9,7 +9,7 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="release-0.8pre"
-ISTIO_VERSION=1.9.1
+ISTIO_VERSION=1.8.2
 
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
@@ -469,8 +469,6 @@ dynatraceActiveGateInstall() {
   fi
 }
 
-#TODO Upgrade to 1.6.2 to pair with the Keptn tests. Add a Gateway as in the keptn docu. 
-# We install  Istio manually since Microk8s 1.18 classic comes with 1.3.4 and 1.5.1 is leightweit
 istioInstall() {
   if [ "$istio_install" = true ]; then
     printInfoSection "Install istio $ISTIO_VERSION into /opt and add it to user/local/bin"
