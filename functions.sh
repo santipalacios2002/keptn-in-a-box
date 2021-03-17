@@ -9,7 +9,7 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="release-0.8pre"
-ISTIO_VERSION=1.8.2
+ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.8.0
@@ -23,7 +23,7 @@ KEPTN_CATALOG_BRANCH="rc8-pre"
 TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.18/stable"
+MICROK8S_CHANNEL="1.19/stable"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 KEPTN_EXAMPLES_DIR="~/examples"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
@@ -592,6 +592,10 @@ keptnInstall() {
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
       waitForAllPods
+
+      # Adding configuration for the IngressGW
+      printInfoSection "Creating Public Gateway for Istio"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/istio && kubectl apply -f public-gateway.yaml"
       
       printInfoSection "Configuring Istio for Keptn"
       bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
@@ -603,7 +607,7 @@ keptnInstall() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} api-keptn-ingress"
     waitForAllPods
     #We sleep for 5 seconds to give time the Ingress to be ready 
-    sleep 30
+    sleep 15
     printInfoSection "Authenticate Keptn CLI"
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
@@ -664,13 +668,13 @@ gitMigrate() {
 dynatraceConfigureMonitoring() {
   if [ "$dynatrace_configure_monitoring" = true ]; then
     printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT"
+    
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
-
-    # TODO Why store bridge and other keptn infos in the secret??
     bashas "kubectl -n keptn create secret generic dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
-    # Deploy Operator as Help pages
+
     printInfo "Deploying the OneAgent Operator"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"
+    
     printInfo "Deploying the Dynatrace Service in Keptn"
     bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
 
@@ -701,7 +705,9 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
+    
     waitForAllPods
+    
     printInfoSection "Expose Unleash-Server"
     #TODO Add Unleash Remediation via bash/curl/yaml
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
@@ -751,9 +757,11 @@ keptndemoCartsonboard() {
     printInfoSection "Keptn onboarding Carts"
     #TODO Parameterize Carts Version.
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh"
+    
     printInfoSection "Keptn onboarding Carts QualityGates"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts_qualitygates.sh"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_carts_0.sh"
+    
     printInfoSection "Keptn Exposing the Onboarded Carts Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop"
   fi
