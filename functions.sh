@@ -934,8 +934,10 @@ doInstallation() {
   keptnInstall
   keptnDeployHomepage
   keptndemoUnleash
+  
   dynatraceConfigureMonitoring
   dynatraceConfigureWorkloads
+  
   keptnBridgeEap
   keptnBridgeDisableLogin
   
@@ -944,7 +946,6 @@ doInstallation() {
   gitDeploy
 
   keptndemoCartsonboard
-  keptndemoDeployCartsloadgenerator
   
   keptndemoCatalogonboard
 
@@ -957,6 +958,8 @@ doInstallation() {
   gitMigrate
   createWorkshopUser
   certmanagerEnable
+  
+  keptndemoDeployCartsloadgenerator
   
   patchConfigService
   
