@@ -9,6 +9,9 @@ if [[ -d "carts" ]]; then
     # Onboarding - prepare  Keptn
     keptn onboard service carts --project=sockshop --chart=./carts
     keptn add-resource --project=sockshop --stage=dev --service=carts --resource=jmeter/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
+    keptn add-resource --project=sockshop --stage=dev --service=carts --resource=jmeter/load.jmx --resourceUri=jmeter/load.jmx
+
+    keptn add-resource --project=sockshop --stage=staging --service=carts --resource=jmeter/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
     keptn add-resource --project=sockshop --stage=staging --service=carts --resource=jmeter/load.jmx --resourceUri=jmeter/load.jmx
 
     # Onboarding - prepare  Keptn
