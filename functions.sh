@@ -9,7 +9,7 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="release-0.8pre"
-ISTIO_VERSION=1.5.10
+ISTIO_VERSION=1.8.2
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.8.0
@@ -954,15 +954,14 @@ doInstallation() {
   loadKeptnDashboard
   
   metricCreation
-
-  gitMigrate
   createWorkshopUser
   certmanagerEnable
   
   keptndemoDeployCartsloadgenerator
   
   patchConfigService
-  
+  gitMigrate
+
   printInstalltime
 }
 
