@@ -18,7 +18,7 @@ if [[ -d "unleash" ]]; then
     # Configure Keptn
     #kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev.kiab.pcjeffint.com/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
 
-    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.1.0/deploy/service.yaml
+    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.0/deploy/service.yaml
 
 else 
     echo "The helmcharts for unleash are not present"
