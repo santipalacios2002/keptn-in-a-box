@@ -17,6 +17,7 @@ if [[ -d "unleash" ]]; then
     #keptn update project unleash --git-user="GIT_USER" --git-token="GIT_TOKEN" --git-remote-url="GIT_REMOTE_URL"
     # Configure Keptn
     #kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev.kiab.pcjeffint.com/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
+    kubectl label namespace unleash-dev istio-injection=enabled
 
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.0/deploy/service.yaml
 
