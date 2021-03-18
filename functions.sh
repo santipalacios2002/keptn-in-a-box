@@ -27,7 +27,7 @@ TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.18/stable"
 
 #clone repos
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
