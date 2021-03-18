@@ -271,6 +271,10 @@ printInfoSection() {
   echo "[Keptn-In-A-Box|INFO] $(timestamp) |$thinline"
 }
 
+printWarn() {
+  echo "[Keptn-In-A-Box|WARN] $(timestamp) |x-x-> $1 <-x-x|"
+}
+
 printError() {
   echo "[Keptn-In-A-Box|ERROR] $(timestamp) |x-x-> $1 <-x-x|"
 }
@@ -283,13 +287,6 @@ validateSudo() {
   printInfo "Keptn-in-a-Box installing with sudo rights:ok"
 }
 
-printWarn() {
-  echo "[Keptn-In-A-Box|WARN] $(timestamp) |x-x-> $1 <-x-x|"
-}
-
-printError() {
-  echo "[Keptn-In-A-Box|ERROR] $(timestamp) |x-x-> $1 <-x-x|"
-}
 
 waitForAllPods() {
   # Function to filter by Namespace, default is ALL
@@ -355,6 +352,30 @@ enableVerbose() {
     printInfo "Activating verbose mode"
     set -x
   fi
+}
+
+printFileSystemUsage() {
+  printInfoSection "File System usage"
+  bashas 'df -h /'
+}
+
+printSystemInfo() {
+  printInfoSection "Print System Information"
+  printInfoSection "CPU Architecture"
+  bashas 'lscpu'
+  printInfoSection "Memory Information"
+  bashas 'lsmem'
+  printFileSystemUsage
+}
+
+# Function to convert 1K Blocks in IEC Formating (.e.g. 1M)
+getDiskUsageInIec() {
+  echo $(($1 * 1024)) | numfmt --to=iec
+}
+
+# Function to return the Available Usage of the Disk space in K Blocks (1024)
+getUsedDiskSpace() {
+  echo $(df / | tail -1 | awk '{print $3}')
 }
 
 # ======================================================================
@@ -514,8 +535,8 @@ istioInstall() {
     mv istio-$ISTIO_VERSION /opt/istio-$ISTIO_VERSION
     chmod +x -R /opt/istio-$ISTIO_VERSION/
     ln -s /opt/istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin/istioctl
-    bashas "echo 'y' | istioctl install --set profile=demo -y"
-    i#bashas "echo 'y' | istioctl manifest apply --force"
+    bashas "echo 'y' | istioctl install"
+    #bashas "echo 'y' | istioctl manifest apply --force"
     waitForAllPods
   fi
 }
@@ -637,7 +658,7 @@ keptnInstall() {
 
     if [ "$keptn_install_qualitygates" = true ]; then
       printInfoSection "Install Keptn with Continuous Delivery UseCase (no Istio configurtion)"
-      #TODO Improve with no flag?
+
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
       waitForAllPods
     else
@@ -909,11 +930,16 @@ printInstalltime() {
   DURATION=$SECONDS
   printInfoSection "Installation complete :)"
   printInfo "It took $(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds"
+  printFileSystemUsage
+  DISK_USED=$(($DISK_FINAL - $DISK_INIT))
+  printInfo "Disk used size 1K Blocks: $DISK_USED"
+  printInfo "Disk used size in IEC Format: $(getDiskUsageInIec $DISK_USED)"
+
   printInfoSection "Keptn & Kubernetes Exposed Ingress Endpoints"
   printInfo "Below you'll find the adresses and the credentials to the exposed services."
   printInfo "We wish you a lot of fun in your Autonomous Cloud journey!"
-#  echo ""
-#  bashas "kubectl get ing -A"
+  echo ""
+  bashas "kubectl get ing -A"
 
   if [ "$keptn_bridge_disable_login" = false ]; then
     printInfoSection "Keptn Bridge Access"
@@ -931,7 +957,7 @@ printInstalltime() {
     printInfoSection "Jenkins-Server Access"
     printInfo "Username: keptn"
     printInfo "Password: keptn"
-  fi 
+  fi
 
   if [ "$git_deploy" = true ]; then
     printInfoSection "Git-Server Access"
@@ -939,16 +965,17 @@ printInstalltime() {
     printInfo "ApiToken to be found on $KEPTN_IN_A_BOX_DIR/resources/gitea/keptn-token.json"
     printInfo "For migrating keptn projects to your self-hosted git repository afterwards just execute the following function:"
     printInfo "cd $KEPTN_IN_A_BOX_DIR/resources/gitea/ && source ./gitea-functions.sh; createKeptnRepoManually {project-name}"
-  fi 
+  fi
 
   if [ "$create_workshop_user" = true ]; then
     printInfoSection "Workshop User Access (SSH Access)"
     printInfo "ssh ${NEWUSER}@${DOMAIN}"
     printInfo "Password: ${NEWPWD}"
-  fi 
+  fi
 
-  echo ""
-  bashas "kubectl get ing -A"
+  printInfoSection "Keptn in a Box $KIAB_RELEASE installation finished."
+  printInfo "Good luck in your Autonomous Cloud Journey!!"
+  printInfo "If you faced an issue or just want to say hi, come by @ https://keptn.slack.com/"
 }
 
 printFlags() {
@@ -994,14 +1021,13 @@ doInstallation() {
   hostAliasPod
   
   dynatraceActiveGateInstall
+  
   istioInstall
   helmInstall
   certmanagerInstall
   resourcesClone
   keptnExamplesClone
-  
   keptnCatalogClone
-  
   dynatraceSaveCredentials
 
   setupMagicDomainPublicIp
@@ -1011,11 +1037,11 @@ doInstallation() {
 
   keptnInstall
   keptnDeployHomepage
+
   keptndemoUnleash
   
   dynatraceConfigureMonitoring
-  dynatraceConfigureWorkloads
-  
+  dynatraceConfigureWorkloads 
   keptnBridgeEap
   keptnBridgeDisableLogin
   
@@ -1023,24 +1049,24 @@ doInstallation() {
 
   gitDeploy
 
-  keptndemoCartsonboard
-  
+  keptndemoCartsonboard 
+  keptndemoDeployCartsloadgenerator  
   keptndemoCatalogonboard
+  keptndemoUnleashConfigure
 
   jmeterService
 
   loadKeptnDashboard
-  
   metricCreation
+
   createWorkshopUser
   certmanagerEnable
   
-  keptndemoDeployCartsloadgenerator
-  keptndemoUnleashConfigure
-  
   patchConfigService
+
   gitMigrate
 
+  DISK_FINAL=$(getUsedDiskSpace)
   printInstalltime
 }
 
