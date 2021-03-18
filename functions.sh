@@ -671,9 +671,12 @@ keptnInstall() {
       printInfoSection "Creating Public Gateway for Istio"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/istio && kubectl apply -f public-gateway.yaml"
       
-      printInfoSection "Configuring Istio for Keptn"
-      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
+      #printInfoSection "Configuring Istio for Keptn"
+      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
       
+      printInfoSection "Configuring Istio for Keptn"
+      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=public-gateway.istio-system -oyaml --dry-run | kubectl replace -f -"
+
       printInfo "Restart Keptn Helm Service"
       bashas "kubectl delete pod -n keptn -lapp.kubernetes.io/name=helm-service"
     fi
@@ -784,7 +787,7 @@ keptndemoUnleash() {
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
     waitForAllPods
-    
+    exit 1
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
     
@@ -931,9 +934,9 @@ printInstalltime() {
   printInfoSection "Installation complete :)"
   printInfo "It took $(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds"
   printFileSystemUsage
-  DISK_USED=$(($DISK_FINAL - $DISK_INIT))
-  printInfo "Disk used size 1K Blocks: $DISK_USED"
-  printInfo "Disk used size in IEC Format: $(getDiskUsageInIec $DISK_USED)"
+  #DISK_USED=$(($DISK_FINAL - $DISK_INIT))
+  #printInfo "Disk used size 1K Blocks: $DISK_USED"
+  #printInfo "Disk used size in IEC Format: $(getDiskUsageInIec $DISK_USED)"
 
   printInfoSection "Keptn & Kubernetes Exposed Ingress Endpoints"
   printInfo "Below you'll find the adresses and the credentials to the exposed services."
