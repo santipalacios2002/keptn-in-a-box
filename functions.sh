@@ -283,6 +283,14 @@ validateSudo() {
   printInfo "Keptn-in-a-Box installing with sudo rights:ok"
 }
 
+printWarn() {
+  echo "[Keptn-In-A-Box|WARN] $(timestamp) |x-x-> $1 <-x-x|"
+}
+
+printError() {
+  echo "[Keptn-In-A-Box|ERROR] $(timestamp) |x-x-> $1 <-x-x|"
+}
+
 waitForAllPods() {
   # Function to filter by Namespace, default is ALL
   if [[ $# -eq 1 ]]; then
@@ -506,8 +514,8 @@ istioInstall() {
     mv istio-$ISTIO_VERSION /opt/istio-$ISTIO_VERSION
     chmod +x -R /opt/istio-$ISTIO_VERSION/
     ln -s /opt/istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin/istioctl
-    bashas "echo 'y' | istioctl install"
-    #bashas "echo 'y' | istioctl manifest apply --force"
+    #bashas "echo 'y' | istioctl install"
+    bashas "echo 'y' | istioctl manifest apply --force"
     waitForAllPods
   fi
 }
