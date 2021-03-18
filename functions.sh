@@ -313,6 +313,35 @@ waitForAllPods() {
   fi
 }
 
+waitForServersAvailability() {
+  # expand function to wait for git curl 200 / eval RC
+  if [[ $# -eq 1 ]]; then
+    URL="$1"
+  else
+    printError "You need to define a URL to check a server's availability e.g. http://server.com/ "
+    exit 1
+  fi
+  RETRY=0
+  RETRY_MAX=24
+  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
+  CMD="curl --write-out '%{http_code}' --silent --output /dev/null $URL"
+  printInfo "Checking availability for URL  \"$URL\"."
+  while [[ $RETRY -lt $RETRY_MAX ]]; do
+    response=$(eval "$CMD")
+    if [[ "$response" == '200' ]]; then
+      printInfo "URL return 200."
+      break
+    fi
+    RETRY=$(($RETRY + 1))
+    printWarn "Retry: ${RETRY}/${RETRY_MAX} - Wait 10s for $URL to be available... RC is $response"
+    sleep 10
+  done
+  if [[ $RETRY == $RETRY_MAX ]]; then
+    printError "URL $URL is still not available. Exiting..."
+    exit 1
+  fi
+}
+
 enableVerbose() {
   if [ "$verbose_mode" = true ]; then
     printInfo "Activating verbose mode"
@@ -725,12 +754,13 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-    
     waitForAllPods
     
     printInfoSection "Expose Unleash-Server"
-    #TODO Add Unleash Remediation via bash/curl/yaml
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
+    
+    UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
+    waitForServersAvailability ${UNLEASH_SERVER}
   fi
 }
 
