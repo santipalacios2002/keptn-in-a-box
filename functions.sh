@@ -514,8 +514,8 @@ istioInstall() {
     mv istio-$ISTIO_VERSION /opt/istio-$ISTIO_VERSION
     chmod +x -R /opt/istio-$ISTIO_VERSION/
     ln -s /opt/istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin/istioctl
-    #bashas "echo 'y' | istioctl install"
-    bashas "echo 'y' | istioctl manifest apply --force"
+    bashas "echo 'y' | istioctl install --set profile=demo -y"
+    i#bashas "echo 'y' | istioctl manifest apply --force"
     waitForAllPods
   fi
 }
