@@ -37,7 +37,8 @@ KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_CATALOG_DIR="~/overview"
 
 #use to test jmeter services
-JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
+#JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
+JMETER_SERVICE_BRANCH="release-0.8.0"
 ALT_JMETER_SERVICE_BRANCH="release-0.8.0-alpha"
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
@@ -160,7 +161,7 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=true
-  patch_config_service=true
+  patch_config_service=false
 }
 
 installationBundleWorkshop() {
@@ -699,13 +700,13 @@ jmeterService() {
   if [ "$jmeter_install" = true ]; then
   printInfoSection "Installing and configuring Dynatrace jmeter service $DT_TENANT"
   # Original to KIAB
-  #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
+  bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
   # use with newer version of Keptn - Stable
   #bashas "kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptncontrib/jmeter-extended-service:0.2.0 --record"
   ## User for jmeter mint
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
   printInfoSection "JMeter Service for keptn 0.8.0"
-  bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
+  #bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
   waitForAllPods
   fi
 }
