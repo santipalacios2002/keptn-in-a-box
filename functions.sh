@@ -787,7 +787,7 @@ keptndemoUnleash() {
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
     waitForAllPods
-    exit 1
+
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
     
