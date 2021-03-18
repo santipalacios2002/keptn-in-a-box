@@ -346,7 +346,7 @@ waitForServersAvailability() {
   done
   if [[ $RETRY == $RETRY_MAX ]]; then
     printError "URL $URL is still not available. Exiting..."
-    exit 1
+    #exit 1
   fi
 }
 
