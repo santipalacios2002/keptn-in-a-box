@@ -737,7 +737,7 @@ keptndemoUnleash() {
 keptndemoUnleashConfigure() {
   if [ "$keptndemo_unleash_configure" = true ]; then
     printInfoSection "Enable Feature Flags for Unleash and Configure Keptn for it"
-    bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/unleash_add_featureflags.sh ${UNLEASH_SERVER}"
+    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/unleash_add_featureflags.sh ${UNLEASH_SERVER}"
     printInfoSection "No load generation will be created for running the experiment"
     printInfoSection "You can trigger the experiment manually here: https://tutorials.keptn.sh/tutorials/keptn-full-tour-dynatrace-08/#25"
   fi
