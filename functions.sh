@@ -160,7 +160,7 @@ installationBundleDemo() {
   keptn_bridge_disable_login=true
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=true
+  jmeter_install=false
   patch_config_service=false
 }
 
