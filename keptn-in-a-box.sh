@@ -107,7 +107,8 @@ echo "tenant: $TENANT";
 # if no DOMAIN is setted, the public IP of the machine will be converted to a magic nip.io domain 
 # ---- Define your Domain ----
 #DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
-DOMAIN="kiab.pcjeffint.com"
+#DOMAIN="kiab.pcjeffint.com"
+DOMAIN="192.168.3.91.nip.io"
 
 # ---- The Email Account for the Certmanager ClusterIssuer with Let's encrypt ---- 
 # ---- By not providing an Email and letting certificates get generated will end up in 
