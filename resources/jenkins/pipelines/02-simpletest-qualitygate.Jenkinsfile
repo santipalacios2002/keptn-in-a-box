@@ -5,11 +5,11 @@ node {
     properties([
         parameters([
          string(defaultValue: 'qualitygate-simpletest', description: 'Name of your Keptn Project for Quality Gate Feedback ', name: 'Project', trim: false), 
-         string(defaultValue: 'hardening', description: 'Stage in your Keptn project used for for Quality Gate Feedback', name: 'Stage', trim: false), 
+         string(defaultValue: 'performancestage', description: 'Stage in your Keptn project used for for Quality Gate Feedback', name: 'Stage', trim: false), 
          string(defaultValue: 'evalservice', description: 'Servicename used to keep SLIs and SLOs', name: 'Service', trim: false),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
-         string(defaultValue: 'http://frontend.keptnorders-staging.kiab.pcjeffint.com', description: 'URI of the application you want to run a test against', name: 'DeploymentURI', trim: false),
+         string(defaultValue: 'http://frontend.keptnorders-staging.192.168.3.91.nip.io', description: 'URI of the application you want to run a test against', name: 'DeploymentURI', trim: false),
          string(defaultValue: '/:homepage;/order:order;/customer/list.html:customer;/catalog/list.html:catalog;/order/form.html:orderForm', description: 'A semi-colon separated list of URIPaths:TestName tupples that the load test should generate load', name: 'URLPaths', trim: false),
          string(defaultValue: '3', description: 'How long shall we run load against the specified URL?', name: 'LoadTestTime'),
          string(defaultValue: '1000', description: 'Think time in ms (milliseconds) after each test cycle', name: 'ThinkTime'),
