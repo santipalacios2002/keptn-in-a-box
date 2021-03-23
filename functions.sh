@@ -20,21 +20,23 @@ KEPTN_DT_SERVICE_VERSION=0.11.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.8.0
 
 # https://github.com/keptn/examples
+KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="release-0.8.0"
-KEPTN_CATALOG_BRANCH="rc8-pre"
-TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
+KEPTN_EXAMPLES_DIR="~/examples"
 
+KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
+KEPTN_CATALOG_BRANCH="rc8-pre"
+KEPTN_CATALOG_DIR="~/overview"
+
+TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 
 MICROK8S_CHANNEL="1.19/stable"
 
-#clone repos
-KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-KEPTN_EXAMPLES_DIR="~/examples"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
-KEPTN_CATALOG_DIR="~/overview"
+KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
 #use to test jmeter services
 #JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
@@ -610,14 +612,14 @@ resourcesClone() {
 keptnExamplesClone() {
   if [ "$keptn_examples_clone" = true ]; then
     printInfoSection "Clone Keptn Exmaples $KEPTN_EXAMPLES_BRANCH"
-    bashas "git clone --branch $KEPTN_EXAMPLES_BRANCH https://github.com/keptn/examples.git $KEPTN_EXAMPLES_DIR --single-branch"
+    bashas "git clone --branch $KEPTN_EXAMPLES_BRANCH $KEPTN_EXAMPLES_REPO $KEPTN_EXAMPLES_DIR --single-branch"
   fi
 }
 
 keptnCatalogClone() {
   if [ "$keptn_catalog_clone" = true ]; then
     printInfoSection "Clone catalog $KEPTN_CATALOG_BRANCH"
-    bashas "git clone --branch $KEPTN_CATALOG_BRANCH https://github.com/dthotday-performance/overview.git $KEPTN_CATALOG_DIR --single-branch"
+    bashas "git clone --branch $KEPTN_CATALOG_BRANCH $KEPTN_CATALOG_REPO $KEPTN_CATALOG_DIR --single-branch"
   fi
 }
 
