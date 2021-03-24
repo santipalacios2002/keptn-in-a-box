@@ -6,6 +6,7 @@
       aggregate_function: avg
     objectives:
       - sli: rt_svc_p95
+        displayName: "Reponse Time P95"
         pass:        # pass if (relative change <= 10% AND absolute value is < 500)
           - criteria:
               - "<=+10%" # relative values require a prefixed sign (plus or minus)
@@ -14,10 +15,12 @@
           - criteria:
               - "<=800"
       - sli: throughput_svc
+        displayName: "Throughput"
         pass:
           - criteria:
             - "> 2000" # at least 1000 Calls for a basic test to pass.
       - sli: error_count
+        displayName: "Error Count"
         weight: 2
         pass:
           - criteria:
@@ -26,7 +29,9 @@
           - criteria:
               - "<=2" # more than 2 failed transactions is failed
       - sli: rt_svc_p50
+        displayName: "Reponse Time P50"
       - sli: rt_svc_p90
+        displayName: "Reponse Time P90"
         pass:
           - criteria:
               - "<=+10%"
@@ -34,6 +39,7 @@
           - criteria:
               - "<=+50%"   
       - sli: db_calls
+        displayName: "DB Calls"
         pass:
           - criteria:
               - "<=+5%"
@@ -41,6 +47,7 @@
           - criteria:
               - ">+5%"
       - sli: non_db_calls
+        displayName: "non-DB Calls"
         pass:
           - criteria:
               - "<=+5%"
@@ -48,6 +55,7 @@
           - criteria:
               - ">+5%"
       - sli: lock_time
+        displayName: "Lock Time"
         pass:
           - criteria:
               - "<=+5%"
@@ -55,6 +63,7 @@
           - criteria:
               - ">+5%"
       - sli: io_time
+        displayName: "IO Time"
         pass:
           - criteria:
               - "<=+5%"
@@ -62,6 +71,7 @@
           - criteria:
               - ">+5%"
       - sli: cpu_time
+        displayName: "CPU Time"
         pass:
           - criteria:
               - "<=+5%"
