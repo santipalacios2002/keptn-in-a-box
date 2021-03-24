@@ -597,8 +597,9 @@ keptndemoDeployCartsloadgenerator() {
   # changed to put in the load namespace
   if [ "$keptndemo_cartsload" = true ]; then
     printInfoSection "Deploy Cartsload Generator"
-    bashas "kubectl create namespace load"
-    bashas "kubectl create deploy cartsloadgen --image=shinojosa/cartsloadgen:keptn -n load"
+    #bashas "kubectl create namespace load"
+    #bashas "kubectl create deploy cartsloadgen --image=shinojosa/cartsloadgen:keptn -n load"
+    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/examples/${KEPTN_EXAMPLES_BRANCH}/load-generation/cartsloadgen/deploy/cartsloadgen-base.yaml -n loadgen --record"
   fi
 }
 
