@@ -13,13 +13,13 @@ metadata:
     # rewrite any request will return 404
     nginx.ingress.kubernetes.io/rewrite-target: /
     #cert-manager.io/cluster-issuer: "letsencrypt"
-  name: et-ingress
+  name: easytravel-ingress
   namespace: easytravel
 spec:
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
-  - host: et.domain.placeholder
+  - host: easytravel.domain.placeholder
     http:
       paths:
       - backend:
@@ -28,5 +28,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - et.domain.placeholder
+    - easytravel.domain.placeholder
     #secretName: frontend-tls
