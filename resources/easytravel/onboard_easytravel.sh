@@ -22,7 +22,7 @@ if [[ -d "easytravel-frontend" ]]; then
     keptn add-resource --project=easytravel --service=easytravel-frontend --stage=staging --resource=jmeter/frontend/load.jmx --resourceUri=jmeter/load.jmx
     
     keptn add-resource --project=easytravel --service=easytravel-backend --stage=staging --resource=jmeter/backend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=easytravel --service=easytravel-backend --stage=staging --resource=jmeter/backend/load.jmx --resourceUri=jmeter/load.jmx
+    #keptn add-resource --project=easytravel --service=easytravel-backend --stage=staging --resource=jmeter/backend/load.jmx --resourceUri=jmeter/load.jmx
     
      
     # add jmeter resources for production
@@ -31,7 +31,7 @@ if [[ -d "easytravel-frontend" ]]; then
     keptn add-resource --project=easytravel --service=easytravel-frontend --stage=production --resource=jmeter/frontend/load.jmx --resourceUri=jmeter/load.jmx
     
     keptn add-resource --project=easytravel --service=easytravel-backend --stage=production --resource=jmeter/backend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=easytravel --service=easytravel-backend --stage=production --resource=jmeter/backend/load.jmx --resourceUri=jmeter/load.jmx
+    #keptn add-resource --project=easytravel --service=easytravel-backend --stage=production --resource=jmeter/backend/load.jmx --resourceUri=jmeter/load.jmx
     
     
     # add jmeter config for staging
