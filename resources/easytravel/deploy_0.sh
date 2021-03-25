@@ -6,4 +6,4 @@ sleep 30
 # Trigger the deployment
 keptn trigger delivery --project=easytravel --service=easytravel-backend --image=docker.io/dynatrace/easytravel-backend --tag=2.0.0.3256 --labels=creator=cli
 # Trigger the deployment
-keptn trigger delivery --project=easytravel --service=easytravel-frontend --image=docker.io/dynatrace/dynatrace/easytravel-loadgen --tag=latest --labels=creator=cli
+keptn trigger delivery --project=easytravel --service=easytravel-frontend --image=docker.io/dynatrace/easytravel-frontend --tag=latest --labels=creator=cli
