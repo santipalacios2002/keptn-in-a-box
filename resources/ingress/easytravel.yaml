@@ -19,7 +19,7 @@ spec:
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
-  - host: easytravel-frontend.domain.placeholder
+  - host: easytravel-frontend.easytravel-staging.domain.placeholder
     http:
       paths:
       - backend:
@@ -28,5 +28,5 @@ spec:
         path: /
   tls:
   - hosts:
-    - easytravel-frontend.domain.placeholder
+    - easytravel-frontend.easytravel-staging.domain.placeholder
     #secretName: frontend-tls
