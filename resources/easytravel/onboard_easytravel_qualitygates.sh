@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 #If directory exists continue, otherwise exit
-if [[ -d "easytravel" ]]; then
+if [[ -d "easytravel-frontend" ]]; then
 
     # The context for this script needs to be in easytravel
     echo "Adding the SLI for the Project to all Stages"
