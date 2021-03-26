@@ -20,30 +20,30 @@ if [[ -d "catalog" ]]; then
     #keptn add-resource --project=keptnorders --resource=jmeter/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
     echo "load service level jmeter scripts-staging"
     keptn add-resource --project=keptnorders --service=frontend --stage=staging --resource=jmeter/frontend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=frontend --stage=staging --resource=jmeter/frontend/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=frontend --stage=staging --resource=jmeter/frontend/frontend-load.jmx --resourceUri=jmeter/frontend-load.jmx
     
     keptn add-resource --project=keptnorders --service=customer --stage=staging --resource=jmeter/customer/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=customer --stage=staging --resource=jmeter/customer/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=customer --stage=staging --resource=jmeter/customer/customer-load.jmx --resourceUri=jmeter/customer-load.jmx
     
     keptn add-resource --project=keptnorders --service=catalog --stage=staging --resource=jmeter/catalog/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=catalog --stage=staging --resource=jmeter/catalog/load.jmx --resourceUri=jmeter/load.jmx    
+    keptn add-resource --project=keptnorders --service=catalog --stage=staging --resource=jmeter/catalog/catalog-load.jmx --resourceUri=jmeter/catalog-load.jmx    
     
     keptn add-resource --project=keptnorders --service=order --stage=staging --resource=jmeter/order/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=order --stage=staging --resource=jmeter/order/load.jmx --resourceUri=jmeter/load.jmx    
+    keptn add-resource --project=keptnorders --service=order --stage=staging --resource=jmeter/order/order-load.jmx --resourceUri=jmeter/order-load.jmx    
     
     # add jmeter resources for production
     echo "load service level jmeter scripts-production"
     keptn add-resource --project=keptnorders --service=frontend --stage=production --resource=jmeter/frontend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=frontend --stage=production --resource=jmeter/frontend/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=frontend --stage=production --resource=jmeter/frontend/frontend-load.jmx --resourceUri=jmeter/frontend-load.jmx
     
     keptn add-resource --project=keptnorders --service=customer --stage=production --resource=jmeter/customer/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=customer --stage=production --resource=jmeter/customer/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=customer --stage=production --resource=jmeter/customer/customer-load.jmx --resourceUri=jmeter/customer-load.jmx
     
     keptn add-resource --project=keptnorders --service=catalog --stage=production --resource=jmeter/catalog/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=catalog --stage=production --resource=jmeter/catalog/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=catalog --stage=production --resource=jmeter/catalog/catalog-load.jmx --resourceUri=jmeter/catalog-load.jmx
     
     keptn add-resource --project=keptnorders --service=order --stage=production --resource=jmeter/order/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=order --stage=production --resource=jmeter/order/load.jmx --resourceUri=jmeter/load.jmx
+    keptn add-resource --project=keptnorders --service=order --stage=production --resource=jmeter/order/order-load.jmx --resourceUri=jmeter/order-load.jmx
     
     # add jmeter config for staging
     echo "load jmeter.conf.yaml"
