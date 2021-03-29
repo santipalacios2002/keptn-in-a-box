@@ -316,6 +316,25 @@ master:
                   }
                 }
               }
+      pipeline-deploy-carts:  | 
+        jobs:
+          - script: >
+              pipelineJob('01.1-Sockshop Delivery') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/dthotday-performance/overview.git')
+                        }
+                        branch('*/rc8-pre')
+                      }
+                    }
+                    scriptPath 'keptncartsdelivery.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }              
       pipeline-qualitygates:  | 
         jobs:
           - script: >
