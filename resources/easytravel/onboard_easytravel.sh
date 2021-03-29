@@ -16,7 +16,7 @@ if [[ -d "easytravel-frontend" ]]; then
     
     # add jmeter resources for staging
     echo "load for project"
-    keptn add-resource --project=keptnorders --resource=jmeter/frontend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
+    keptn add-resource --project=keptnorders --resource=jmeter/frontend/et-basiccheck.jmx --resourceUri=jmeter/et-basiccheck.jmx
     #keptn add-resource --project=keptnorders --resource=jmeter/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
     echo "load service level jmeter scripts-staging"
     #keptn add-resource --project=easytravel --service=easytravel-frontend --stage=staging --resource=jmeter/frontend/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
