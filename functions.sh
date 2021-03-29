@@ -110,6 +110,8 @@ patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
 
+post_flight=false
+
 patch_config_service=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
@@ -147,10 +149,12 @@ installationBundleDemo() {
   dynatrace_configure_workloads=true
 
   keptndeploy_homepage=true
-  keptndemo_cartsload=true
+  # unleash
   keptndemo_unleash=true
   keptndemo_unleash_configure=true
+  # sockshop application
   keptndemo_cartsonboard=true
+  keptndemo_cartsload=true
   # use for order application
   keptndemo_catalogonboard=true
   keptndashboard_load=false
@@ -163,6 +167,9 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=false
+  
+  post_flight=false
+  
   patch_config_service=false
 }
 
@@ -933,6 +940,12 @@ createWorkshopUser() {
   fi
 }
 
+postFlightWork() {
+  if [ "$post_flight" = true ]; then    
+    bashas "sudo chown -f -R ubuntu ~/.kube"
+  fi
+}
+
 printInstalltime() {
   DURATION=$SECONDS
   printInfoSection "Installation complete :)"
@@ -987,7 +1000,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1072,6 +1085,8 @@ doInstallation() {
   patchConfigService
 
   gitMigrate
+  
+  postFlightWork
 
   DISK_FINAL=$(getUsedDiskSpace)
   printInstalltime
