@@ -10,7 +10,6 @@
 # ==================================================
 KIAB_RELEASE="release-0.8pre"
 ISTIO_VERSION=1.9.1
-
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.8.1
@@ -18,26 +17,20 @@ KEPTN_VERSION=0.8.1
 KEPTN_DT_SERVICE_VERSION=0.11.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.8.0
-
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="release-0.8.1"
 KEPTN_EXAMPLES_DIR="~/examples"
-
 KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
 KEPTN_CATALOG_BRANCH="rc8-pre"
 KEPTN_CATALOG_DIR="~/overview"
-
 TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-
 MICROK8S_CHANNEL="1.19/stable"
-
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-
 #use to test jmeter services
 #JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
 JMETER_SERVICE_BRANCH="release-0.8.0"
@@ -79,21 +72,15 @@ keptn_install=false
 keptn_install_qualitygates=false
 keptn_examples_clone=false
 resources_clone=false
-
 hostalias=false
-
 keptn_catalog_clone=false
-
 git_deploy=false
 git_migrate=false
-
 dynatrace_savecredentials=false
 dynatrace_configure_monitoring=false
 dynatrace_activegate_install=false
 dynatrace_configure_workloads=false
-
 jenkins_deploy=false
-
 keptn_bridge_eap=false
 keptn_bridge_disable_login=false
 keptndeploy_homepage=false
@@ -109,9 +96,7 @@ expose_kubernetes_dashboard=false
 patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
-
 post_flight=false
-
 patch_config_service=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
@@ -124,30 +109,22 @@ installationBundleDemo() {
   docker_install=true
   microk8s_install=true
   setup_proaliases=true
-
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-
   certmanager_install=false
   certmanager_enable=false
-
   keptn_install=true
   keptn_examples_clone=true
   resources_clone=true
-  
   hostalias=false
-  
   keptn_catalog_clone=true
-
   git_deploy=true
   git_migrate=true
-
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   dynatrace_activegate_install=true
   dynatrace_configure_workloads=true
-
   keptndeploy_homepage=true
   # unleash
   keptndemo_unleash=true
@@ -159,7 +136,6 @@ installationBundleDemo() {
   keptndemo_catalogonboard=true
   keptndashboard_load=false
   createMetrics=false
-  
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
@@ -167,9 +143,7 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=false
-  
   post_flight=false
-  
   patch_config_service=false
 }
 
@@ -602,6 +576,7 @@ certmanagerEnable() {
 keptndemoDeployCartsloadgenerator() {
   # https://github.com/sergiohinojosa/keptn-in-a-box/resources/cartsloadgenerator
   # changed to put in the load namespace
+  # TODO: Configure for KIAB
   if [ "$keptndemo_cartsload" = true ]; then
     printInfoSection "Deploy Cartsload Generator"
     #bashas "kubectl create namespace load"
@@ -639,6 +614,7 @@ dynatraceSaveCredentials() {
 }
 
 hostAliasPod() {
+  # TODO: Leaving in for now, but may need to remove, does not need to be installed.
   if [ "$hostalias" = true ]; then
     printInfoSection "Deploying HostAlias Pod"
     curl -o hostaliases-pod.yaml https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/${KIAB_RELEASE}/resources/ingress/hostaliases-pod.yaml
@@ -651,13 +627,11 @@ hostAliasPod() {
 
 keptnInstallClient() {
   printInfoSection "Download Keptn $KEPTN_VERSION"
-  #wget -q -O keptn.tar "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/${KEPTN_VERSION}_keptn-linux.tar"
   wget -q -O keptn.tar.gz "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/keptn-${KEPTN_VERSION}-linux-amd64.tar.gz"
   gunzip keptn.tar.gz
   tar -xvf keptn.tar
   chmod +x keptn-${KEPTN_VERSION}-linux-amd64
   mv keptn-${KEPTN_VERSION}-linux-amd64 /usr/local/bin/keptn
-  #mv keptn /usr/local/bin/keptn
   printInfo "Remove keptn.tar"
   rm keptn.tar
 }
@@ -708,7 +682,7 @@ keptnInstall() {
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  # set this to false for keptn 0.8.0 as we don't need to overwrite the jmeter service.
+  # set this to false for keptn 0.8.x as we don't need to overwrite the jmeter service.
   printInfoSection "Installing and configuring Dynatrace jmeter service $DT_TENANT"
   # Original to KIAB
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
@@ -760,20 +734,15 @@ gitMigrate() {
 
 dynatraceConfigureMonitoring() {
   if [ "$dynatrace_configure_monitoring" = true ]; then
-    printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT"
-    
+    printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT" 
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
     bashas "kubectl -n keptn create secret generic dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
-
     printInfo "Deploying the OneAgent Operator"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"
-    
     printInfo "Deploying the Dynatrace Service in Keptn"
     bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
-
     printInfo "Setting up Dynatrace SLI provider in Keptn"
-    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
-    
+    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"   
     waitForAllPods
     bashas "keptn configure monitoring dynatrace"
   fi
@@ -799,10 +768,8 @@ keptndemoUnleash() {
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
     waitForAllPods
-
     printInfoSection "Expose Unleash-Server"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash"
-    
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash" 
     UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
     waitForServersAvailability ${UNLEASH_SERVER}
   fi
