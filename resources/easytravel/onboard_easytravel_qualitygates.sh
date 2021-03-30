@@ -15,13 +15,13 @@ if [[ -d "easytravel-frontend" ]]; then
     keptn add-resource --project=easytravel --stage=staging --service=easytravel-mongodb --resource=simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=easytravel --stage=staging --service=easytravel-backend --resource=simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=easytravel --stage=staging --service=easytravel-frontend --resource=simple_slo.yaml --resourceUri=slo.yaml
-    keptn add-resource --project=easytravel --stage=staging --service=easytravel-wwww --resource=simple_slo.yaml --resourceUri=slo.yaml
+    keptn add-resource --project=easytravel --stage=staging --service=easytravel-nginx --resource=simple_slo.yaml --resourceUri=slo.yaml
 
     echo "Setting up QualityGate to Production"
     keptn add-resource --project=easytravel --stage=production --service=easytravel-mongodb --resource=simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=easytravel --stage=production --service=easytravel-backend --resource=simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=easytravel --stage=production --service=easytravel-frontend --resource=simple_slo.yaml --resourceUri=slo.yaml
-    keptn add-resource --project=easytravel --stage=production --service=easytravel-wwww --resource=simple_slo.yaml --resourceUri=slo.yaml    
+    keptn add-resource --project=easytravel --stage=production --service=easytravel-nginx --resource=simple_slo.yaml --resourceUri=slo.yaml    
 
 else 
     echo "The helmcharts for easytravel are not present"
