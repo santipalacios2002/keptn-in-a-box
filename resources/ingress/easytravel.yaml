@@ -23,7 +23,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: easytravel-www
+          serviceName: easytravel-frontend
           servicePort: 80
         path: /
   tls:
