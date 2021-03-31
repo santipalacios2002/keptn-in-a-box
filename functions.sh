@@ -862,15 +862,15 @@ keptndemoCatalogonboard() {
 
 keptndemoEasytravelonboard() {
   if [ "$keptndemo_easytravelonboard" = true ]; then
-    printInfoSection "Keptn onboarding orders application"
+    printInfoSection "Keptn onboarding easytravel application"
 
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
     # deploy easytravel
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_catalog_0.sh"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
 
     waitForAllPods
-    printInfoSection "Keptn Exposing the Onboarded orders Application"
+    printInfoSection "Keptn Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
