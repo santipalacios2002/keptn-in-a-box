@@ -338,7 +338,7 @@ master:
       pipeline-deploy-carts:  | 
         jobs:
           - script: >
-              pipelineJob('01.1-Sockshop Delivery') {
+              pipelineJob('01.2-Sockshop Delivery') {
                 definition {
                   cpsScm {
                     scm {
