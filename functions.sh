@@ -506,7 +506,7 @@ microk8sEnableRegistry() {
 
 dynatraceActiveGateInstall() {
   if [ "$dynatrace_activegate_install" = true ]; then
-    printInfoSection "Installation of Active Gate"
+    printInfoSection "Installation of Active Gate on $DT_TENANT"
     wget -nv -O activegate.sh "https://$DT_TENANT/api/v1/deployment/installer/gateway/unix/latest?Api-Token=$DT_PAAS_TOKEN&arch=x86&flavor=default"
     sh activegate.sh
     printInfo "removing ActiveGate installer."
@@ -674,6 +674,7 @@ keptnInstall() {
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
   # set this to false for keptn 0.8.x as we don't need to overwrite the jmeter service.
+  # TODO: this change is no longer needed for keptn 0.8.1
   printInfoSection "Installing and configuring Dynatrace jmeter service $DT_TENANT"
   # Original to KIAB
   #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
