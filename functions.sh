@@ -576,18 +576,6 @@ certmanagerEnable() {
   fi
 }
 
-keptndemoDeployCartsloadgenerator() {
-  # https://github.com/sergiohinojosa/keptn-in-a-box/resources/cartsloadgenerator
-  # changed to put in the load namespace
-  # TODO: Configure for KIAB
-  if [ "$keptndemo_cartsload" = true ]; then
-    printInfoSection "Deploy Cartsload Generator"
-    #bashas "kubectl create namespace load"
-    #bashas "kubectl create deploy cartsloadgen --image=shinojosa/cartsloadgen:keptn -n load"
-    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/examples/${KEPTN_EXAMPLES_BRANCH}/load-generation/cartsloadgen/deploy/cartsloadgen-base.yaml -n loadgen --record"
-  fi
-}
-
 resourcesClone() {
   if [ "$resources_clone" = true ]; then
     printInfoSection "Clone Keptn-in-a-Box Resources in $KEPTN_IN_A_BOX_DIR"
@@ -842,6 +830,14 @@ keptndemoCartsonboard() {
   fi
 }
 
+keptndemoDeployCartsloadgenerator() {
+  if [ "$keptndemo_cartsload" = true ]; then
+    printInfoSection "Deploy Cartsload Generator"
+    bashas "cd $KEPTN_CATALOG_BRANCH/demo_onbording/loadgen && $KEPTN_CATALOG_BRANCH/demo_onbording/loadgen/prepfiles.sh"
+    bashas "cd $KEPTN_CATALOG_BRANCH/demo_onbording/loadgen && kubectl apply -f cartsloadgen-base.yaml -n loadgen --record"
+  fi
+}
+
 keptndemoCatalogonboard() {
   if [ "$keptndemo_catalogonboard" = true ]; then
     printInfoSection "Keptn onboarding orders application"
@@ -1057,7 +1053,7 @@ doInstallation() {
   gitDeploy
 
   keptndemoCartsonboard 
-  keptndemoDeployCartsloadgenerator  
+    
   keptndemoCatalogonboard
   keptndemoUnleashConfigure
 
@@ -1070,7 +1066,9 @@ doInstallation() {
   certmanagerEnable
   
   patchConfigService
-
+  
+  keptndemoDeployCartsloadgenerator
+  
   keptndemoEasytravelonboard
 
   gitMigrate
