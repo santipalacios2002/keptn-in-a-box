@@ -343,7 +343,7 @@ enableVerbose() {
 
 printFileSystemUsage() {
   printInfoSection "File System usage"
-  bashas 'df -h /'
+  bashas 'df -h / --total'
 }
 
 printSystemInfo() {
