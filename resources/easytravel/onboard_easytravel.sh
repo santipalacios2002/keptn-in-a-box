@@ -13,7 +13,7 @@ if [[ -d "easytravel-frontend" ]]; then
     keptn onboard service easytravel-backend --project=easytravel --chart=./easytravel-backend
     keptn onboard service easytravel-frontend --project=easytravel --chart=./easytravel-frontend
     keptn onboard service easytravel-www --project=easytravel --chart=./easytravel-www
-    keptn onboard loadgenerator --project=easytravel --chart=./loadgen
+    keptn onboard service loadgenerator --project=easytravel --chart=./loadgen
     
     # add jmeter resources for staging
     echo "load for project"
