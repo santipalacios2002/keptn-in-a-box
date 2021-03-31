@@ -833,7 +833,7 @@ keptndemoCartsonboard() {
 keptndemoDeployCartsloadgenerator() {
   if [ "$keptndemo_cartsload" = true ]; then
     printInfoSection "Deploy Cartsload Generator"
-    bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && chmod +x prepfiles.sh && $KEPTN_CATALOG_DIR/demo_onbording/loadgen/prepfiles.sh"
+    bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && chmod +x prepfiles.sh && $KEPTN_CATALOG_DIR/demo_onbording/loadgen/prepfiles.sh ${DOMAIN}"
     bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && kubectl apply -f cartsloadgen-base.yaml -n loadgen --record"
   fi
 }
