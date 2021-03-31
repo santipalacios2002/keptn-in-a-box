@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # Trigger the deployment
-keptn trigger delivery --project=easytravel --service=easytravel-mongodb --image=docker.io/dynatrace/easytravel-mongodb --tag=latest --labels=creator=cli
+keptn trigger delivery --project=easytravel --service=easytravel-mongodb --image=docker.io/dynatrace/easytravel-mongodb --sequence=delivery-direct --tag=latest --labels=creator=cli
 sleep 45
 # Trigger the deployment
 keptn trigger delivery --project=easytravel --service=easytravel-backend --image=docker.io/dynatrace/easytravel-backend --tag=latest --labels=creator=cli
