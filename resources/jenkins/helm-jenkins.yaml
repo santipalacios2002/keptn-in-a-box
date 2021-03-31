@@ -316,6 +316,25 @@ master:
                   }
                 }
               }
+      pipeline-deploy-easytravel:  | 
+        jobs:
+          - script: >
+              pipelineJob('01.1-easytravel-delivery') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/dthotday-performance/overview.git')
+                        }
+                        branch('*/rc8-pre')
+                      }
+                    }
+                    scriptPath 'keptneasytravel.Jenkinsfilee'
+                    lightweight()
+                  }
+                }
+              }              
       pipeline-deploy-carts:  | 
         jobs:
           - script: >
