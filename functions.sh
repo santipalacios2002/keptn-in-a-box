@@ -89,6 +89,7 @@ keptndemo_unleash=false
 keptndemo_unleash_configure=false
 keptndemo_cartsonboard=false
 keptndemo_catalogonboard=false
+keptndemo_easytravelonboard=false
 keptndashboard_load=false
 createMetrics=false
 expose_kubernetes_api=false
@@ -134,6 +135,8 @@ installationBundleDemo() {
   keptndemo_cartsload=true
   # use for order application
   keptndemo_catalogonboard=true
+  # use for easytravel
+  keptndemo_easytravelonboard=true
   keptndashboard_load=false
   createMetrics=false
   expose_kubernetes_api=true
@@ -857,6 +860,23 @@ keptndemoCatalogonboard() {
   fi
 }
 
+keptndemoEasytravelonboard() {
+  if [ "$keptndemo_easytravelonboard" = true ]; then
+    printInfoSection "Keptn onboarding orders application"
+
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
+    # deploy easytravel
+    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_catalog_0.sh"
+
+    waitForAllPods
+    printInfoSection "Keptn Exposing the Onboarded orders Application"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
+  fi
+}
+
 metricCreation() {
   if [ "$createMetrics" = true ]; then
     printInfoSection "create request attributes for calculated metrics"
@@ -967,7 +987,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1050,6 +1070,8 @@ doInstallation() {
   certmanagerEnable
   
   patchConfigService
+
+  keptndemoEasytravelonboard
 
   gitMigrate
   
