@@ -14,14 +14,16 @@ fi
 source ./gitea-functions.sh $DOMAIN
 
 # get Tokens for the User
-getApiTokens
+#getApiTokens
 
 # create an Api Token
-createApiToken
+#createApiToken
 
 # read the Token and keep the hash in memory
 readApiTokenFromFile
 
 # create a repo for each keptn project and migrate it.
+createKeptnRepos
+
+#update repos for each project
 updateKeptnRepos
-#createKeptnRepos

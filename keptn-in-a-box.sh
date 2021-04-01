@@ -106,8 +106,10 @@ echo "tenant: $TENANT";
 # So Keptn and all other services are routed and exposed properly via the Ingress Gateway
 # if no DOMAIN is setted, the public IP of the machine will be converted to a magic nip.io domain 
 # ---- Define your Domain ----
+# Use this for AWS instances
 #DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
-DOMAIN="kiab.pcjeffint.com"
+# Magic domain for home/local cluster
+DOMAIN="192.168.3.91.nip.io"
 
 # ---- The Email Account for the Certmanager ClusterIssuer with Let's encrypt ---- 
 # ---- By not providing an Email and letting certificates get generated will end up in 
@@ -118,9 +120,9 @@ DOMAIN="kiab.pcjeffint.com"
 #      ----- Functions Location -----              #
 # ==================================================
 # - Keptn in a Box release
-KIAB_RELEASE="release-0.7.3.2"
+KIAB_RELEASE="release-0.8pre"
 # - Functions file location
-FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
+FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
 
 ## ----  Write all output to the logfile ----
 if [ "$pipe_log" = true ] ; then

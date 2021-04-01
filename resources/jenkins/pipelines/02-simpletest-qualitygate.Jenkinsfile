@@ -5,12 +5,12 @@ node {
     properties([
         parameters([
          string(defaultValue: 'qualitygate-simpletest', description: 'Name of your Keptn Project for Quality Gate Feedback ', name: 'Project', trim: false), 
-         string(defaultValue: 'qualitystage', description: 'Stage in your Keptn project used for for Quality Gate Feedback', name: 'Stage', trim: false), 
-         string(defaultValue: 'evalservice', description: 'Servicename used to keep SLIs and SLOs', name: 'Service', trim: false),
+         string(defaultValue: 'performancestage', description: 'Stage in your Keptn project used for for Quality Gate Feedback', name: 'Stage', trim: false), 
+         string(defaultValue: 'eval', description: 'Servicename used to keep SLIs and SLOs', name: 'Service', trim: false),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
-         string(defaultValue: 'http://frontend.keptnorders-staging.kiab.pcjeffint.com', description: 'URI of the application you want to run a test against', name: 'DeploymentURI', trim: false),
-         string(defaultValue: '/:homepage;/order:order;/customer/list.html:customer;/catalog/list.html:catalog;/order/line:orderline', description: 'A semi-colon separated list of URIPaths:TestName tupples that the load test should generate load', name: 'URLPaths', trim: false),
+         string(defaultValue: 'http://frontend.keptnorders-staging.192.168.3.91.nip.io', description: 'URI of the application you want to run a test against', name: 'DeploymentURI', trim: false),
+         string(defaultValue: '/:homepage;/order:order;/customer/list.html:customer;/catalog/list.html:catalog;/order/form.html:orderForm', description: 'A semi-colon separated list of URIPaths:TestName tupples that the load test should generate load', name: 'URLPaths', trim: false),
          string(defaultValue: '3', description: 'How long shall we run load against the specified URL?', name: 'LoadTestTime'),
          string(defaultValue: '1000', description: 'Think time in ms (milliseconds) after each test cycle', name: 'ThinkTime'),
          string(defaultValue: '3', description: 'How many minutes to wait after load test is complete until Keptn is done? 0 to not wait', name: 'WaitForResult'),
@@ -18,16 +18,17 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        // keptn.downloadFile("https://raw.githubusercontent.com/keptn-sandbox/performance-testing-as-selfservice-tutorial/release-0.7.3/shipyard.yaml", 'keptn/shipyard.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/overview/rc8-pre/keptn-onboarding/shipyard-performance.yaml", 'keptn/shipyard.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}" // , shipyard:'shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", shipyard:'keptn/shipyard.yaml'
 
         // Upload all the files
+        keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
         keptn.keptnAddResources('keptn/dynatrace/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')

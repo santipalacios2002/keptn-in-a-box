@@ -5,7 +5,7 @@ node {
     properties([
         parameters([
          string(defaultValue: 'qualitygate', description: 'Name of your Project for Quality Gate Feedback ', name: 'Project', trim: false), 
-         string(defaultValue: 'qualitystage', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
+         string(defaultValue: 'hardening', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
          string(defaultValue: 'evalservice', description: 'Name of the Tag for identifyting the service to validate the SLIs and SLOs', name: 'Service', trim: false),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['basic', 'perftest'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
@@ -16,15 +16,17 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/keptn-in-a-box/release-0.7.3.2/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/dthotday-performance/overview/rc8-pre/keptn-onboarding/shipyard-quality-gates.yaml", 'keptn/shipyard.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}" // , shipyard:'shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}" , shipyard:'keptn/shipyard.yaml'
 
         // Upload all the files
+        keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
         keptn.keptnAddResources('keptn/dynatrace/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
