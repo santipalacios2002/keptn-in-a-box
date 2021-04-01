@@ -969,6 +969,8 @@ printInstalltime() {
     printInfo "ApiToken to be found on $KEPTN_IN_A_BOX_DIR/resources/gitea/keptn-token.json"
     printInfo "For migrating keptn projects to your self-hosted git repository afterwards just execute the following function:"
     printInfo "cd $KEPTN_IN_A_BOX_DIR/resources/gitea/ && source ./gitea-functions.sh; createKeptnRepoManually {project-name}"
+    printInfo "to make it easier, You can execute the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run ./update-git-keptn-post-flight.sh"
+    printInfo "This script will load any outstanding projects and update any existing projects."
   fi
 
   if [ "$create_workshop_user" = true ]; then
