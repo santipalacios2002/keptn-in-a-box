@@ -147,6 +147,10 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/keptn-in-a-
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/${KIAB_RELEASE}/keptn-in-a-box/.git' the master branch will be pointing to the actual release.
 
+```bash
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/keptn-in-a-box.sh
+```
+
 #### 3. Execute the file with sudo rights.
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
