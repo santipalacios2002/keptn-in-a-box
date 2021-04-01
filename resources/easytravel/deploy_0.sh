@@ -11,3 +11,5 @@ keptn trigger delivery --project=easytravel --service=easytravel-frontend --imag
 sleep 180
 # Trigger the deployment
 keptn trigger delivery --project=easytravel --service=easytravel-www --image=docker.io/dynatrace/easytravel-nginx --tag=latest --labels=creator=cli
+sleep 180
+keptn trigger delivery --project=easytravel --service=loadgenerator --image=docker.io/dynatrace/easytravel-loadgen --sequence=delivery-direct --tag=latest --labels=creator=cli
