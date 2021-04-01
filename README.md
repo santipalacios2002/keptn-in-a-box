@@ -1,8 +1,13 @@
-> **DISCLAIMER**: This project was developed for educational purposes only and is not complete, nor supported. It's publishment is only intended for helping others automate environments for delivering workshops with Keptn & Dynatrace. Even though the exposed endpoints of this cluster have valid SSL certificates generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.    
+> **DISCLAIMER**: This project was developed for educational purposes only and is not complete, 
+nor supported. It's publishment is only intended for helping others automate environments for delivering 
+workshops with Keptn & Dynatrace. Even though the exposed endpoints of this cluster have valid SSL certificates 
+generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.    
 
 > ## ***🥼⚗ Spend more time innovating and less time configuring***
 
-# Keptn-in-a-Box (with Dynatrace Software Intelligence empowered) 🎁
+# Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
+
+:rotating_light: ALERT: This install uses keptn 0.8.1 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -21,7 +26,7 @@ For spinning up instances automatically with AWS completely configured and set u
 - Set up of useful BASH Aliases for working with the command line
 - Enable autocompletion of Kubectl
 - Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.5.1 
+- Installation of Istio 1.9.1 
 - Installation of Helm Client
 - Enabling own Docker Registry for the Cluster
 - Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
@@ -32,6 +37,8 @@ For spinning up instances automatically with AWS completely configured and set u
 - Deployment of Jenkins preconfigured und managed as code
 - Deployment of the Unleash-Server
 - Onboard of the Sockshop-Carts Sample project
+- Onboard of the keptnOrders project
+- Onboard of the easytravel project
 - Deployment of a cartsloadgenerator PoD
 - Deployment of a Autonomous Cloud teaser home page with links to the pipeline, kubernetes api, keptn-bridge, keptn-api, jenkins 
 - Creation of valid SSL certificates for the exposed endpoints with Certmanager and HTTPs Let's encrypt.
@@ -77,11 +84,14 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
 ─ keptn-in-a-box.sh         the executable (also where to define your variables)
 ─ functions.sh        		The definiton of functions and modules 
 ─ resources                 
-  ├── cartsloadgenerator    Sources of the load container of the carts app 
+  ├── cartsloadgenerator    Sources of the load container of the carts app
+  ├── catalog               Scripts for Onboarding the keptnOrders app
+  ├── easytravel            Scripts for Onboarding the easytravel app 
   ├── demo                  Scripts for Onboarding the Carts app  
   ├── dynatrace             Scripts for integrating with Dynatrace
   ├── homepage              Sources of the homepage for displaying the Autonomous Cloud teaser  
-  ├── ingress               Files and logic for mapping, exposing the endpoints and services. Creation of Certificates.  
+  ├── ingress               Files and logic for mapping, exposing the endpoints and services. Creation of Certificates.
+  ├── istio                 istio config files  
   ├── jenkins               Deployment and configuration for Jenkins managed as code.
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
   └── virtualservices       YAML files for virtualservices 
@@ -93,7 +103,7 @@ This section will give you an idea the nedded size for your Box. But it all depe
 The installer comes with 3 predefined modules: **minimal**, **default** and **full**. 
 
 ### 🕐 Installation time
-From the testing in AWS minimal installation takes ~ 4 minutes to complete and full ~ 8 minutes. 
+From the testing in AWS minimal installation takes ~ 4 minutes to complete and full ~ 20 minutes. 
 
 ### AWS sizings for reference 
 Below is a table for the sizing reference if you run a local VM or are virtualizing locally.
@@ -104,6 +114,7 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 | t2.large   | 2         | 8                |
 | t2.xlarge  | 4         | 16               |
 | t2.2xlarge | 8         | 32               |
+| c4.4xlarge | 16        | 30               | (preferred for full)
 
 ### installationBundleKeptnOnly
 The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
@@ -121,27 +132,39 @@ Filesystem      Size  Used Avail Use% Mounted on
 The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
 
 ### installationBundleAll
-The minimum required for running the default modules is t2.large with 13 Gigs of Disk space.We recommend 20 Gigs and t2.2xlarge for the best experience.
+The minimum required for running the default modules is c4.4xlarge with 35 Gigs of Disk space.We recommend 30 Gigs and c4.4xlarge for the best experience.
 
 ## Get started in 1 - 2 - 3
 
 ### Run it in an available machine  (manually)
 
 #### 1. Log in into  your Ubuntu image
-#### 2. Clone the repo and navigate to the directory
+#### 2. Get the script
 
 ```bash
-git clone https://github.com/keptn-sandbox/keptn-in-a-box ; cd keptn-in-a-box
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/keptn-in-a-box.sh
 ```
 
-> You can also specify a specific release like 'git clone --branch release-0.7.3 https://github.com/keptn-sandbox/keptn-in-a-box.git' the master branch will be pointing to the actual release.
-> Actually you only need to copy and execute the **keptn-in-a-box.sh** file. It'll take care of the rest and load the resources from github.
+> You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/${KIAB_RELEASE}/keptn-in-a-box/.git' the master branch will be pointing to the actual release.
+
+```bash
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/keptn-in-a-box.sh
+```
 
 #### 3. Execute the file with sudo rights.
 ```bash
-sudo bash -c './keptn-in-a-box.sh &'
+sudo bash -c './keptn-in-a-box.sh'
 ```
-And that was it! Yes that easy!  Now if you notice is that there is an & in the command. This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
+
+The script will ask for the following inputs.
+```bash
+Dynatrace Tenant ID []:
+Dynatrace API Token: []:
+Dynatrace PaaS Token: []:
+User Email []:
+```
+
+And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
 ```bash
@@ -150,8 +173,8 @@ less +F /tmp/install.log
 
 #####  The installed modules
 
-The default installation is **installationBundlesDefault** which sets the control flag to true to the following modules:
-
+The default installation is **installationBundleAll** which sets the control flags to true or false for the following modules:
+**Note: full install for complete demo capabilities**
 
 ```bash
   update_ubuntu=true
@@ -161,21 +184,42 @@ The default installation is **installationBundlesDefault** which sets the contro
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
+  certmanager_install=false
+  certmanager_enable=false
   keptn_install=true
   keptn_examples_clone=true
   resources_clone=true
-  resources_route_istio_ingress=true
+  hostalias=false
+  keptn_catalog_clone=true
+  git_deploy=true
+  git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   dynatrace_activegate_install=true
   dynatrace_configure_workloads=true
-  keptn_bridge_eap=true
-  keptndemo_teaser_pipeline=true
-  keptndemo_cartsload=true
+  keptndeploy_homepage=true
   keptndemo_unleash=true
+  keptndemo_unleash_configure=true
   keptndemo_cartsonboard=true
-  microk8s_expose_kubernetes_api=true
-  microk8s_expose_kubernetes_dashboard=true
+  keptndemo_cartsload=true
+  keptndemo_catalogonboard=true
+  keptndemo_easytravelonboard=true
+  keptndashboard_load=false
+  createMetrics=false
+  expose_kubernetes_api=true
+  expose_kubernetes_dashboard=true
+  patch_kubernetes_dashboard=true
+  keptn_bridge_disable_login=true
+  create_workshop_user=false
+  jmeter_install=false
+  post_flight=false
+  patch_config_service=false
+  enable_registry=true
+  certmanager_install=true
+  certmanager_enable=true
+  create_workshop_user=false
+  keptn_bridge_disable_login=true
+  jenkins_deploy=true
 ```
 
 Dynatrace OneAgent and Dynatrace ActiveGate will be installed and configured if you provided your credentials. Otherwise they won't be installed. 
@@ -244,7 +288,7 @@ Comment out the Default and uncomment the installation type you want. For exampl
 # installationBundleKeptnOnly
 
 # - Comment out if selecting another bundle
-installationBundleDemo
+#installationBundleDemo
 
 # - Comment out if only want to install only the QualityGates functionality
 #installationBundleKeptnQualityGates
@@ -253,7 +297,7 @@ installationBundleDemo
 # installationBundleWorkshop
 
 # - Uncomment below for installing all features
-#installationBundleAll
+installationBundleAll
 
 # - Uncomment below for installing a PerformanceAsAService Box
 #installationBundlePerformanceAsAService
@@ -297,6 +341,7 @@ certmanager_enable=true
 ```
 
 If you provide your Email, the Cluster issuer will be created with the given email account. If left empty a fake Email account will be generated.
+for metrics and dashboards, match your Dynatrace account email.
 
 ```bash
 CERTMANAGER_EMAIL="youremail@yourdomain.com"
@@ -319,23 +364,26 @@ This are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-ISTIO_VERSION=1.5.1
+KIAB_RELEASE="release-0.8pre"
+ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.7.0
-KEPTN_JMETER_SERVICE_VERSION=0.2.0
-KEPTN_DT_SERVICE_VERSION=0.8.0
-KEPTN_DT_SLI_SERVICE_VERSION=0.5.0
-KEPTN_EXAMPLES_BRANCH=0.7.0
-TEASER_IMAGE="shinojosa/nginxacm:0.7"
-KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
-MICROK8S_CHANNEL="1.18/stable"
-KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
+KEPTN_VERSION=0.8.1
+KEPTN_DT_SERVICE_VERSION=0.12.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
+KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
+KEPTN_EXAMPLES_BRANCH="release-0.8.1"
 KEPTN_EXAMPLES_DIR="~/examples"
-KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box"
+KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
+KEPTN_CATALOG_BRANCH="rc8-pre"
+KEPTN_CATALOG_DIR="~/overview"
+TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
+KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
+MICROK8S_CHANNEL="1.19/stable"
+KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-KEPTN_EXAMPLES_DIR="~/examples"
 ```
 Feel free to experiment and change the versions. We will try to keep the list up to date. 
+Be careful here as certain deprecations will effect the build
 
 ###  Create your custom installation
 At the begining of the  `functions.sh` file the installation modules are listed. You can enable them in the `keptn-in-a-box.sh` file before calling the `doInstallation` function.
@@ -363,9 +411,15 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
 ![#](doc/micro-diagram-with-keptn.png)
 
+
+## Available builds, problem patters and scenerios
+https://github.com/keptn/examples used for the sockshop app
+
 ## Contributing
 If you have any ideas for improvements or want to contribute that's great. Create a pull request or file an issue.
 
-## Author 
+## Authors 
 sergio.hinojosa@dynatrace.com
+<br>
+jeffery.yarbrough@dynatrace.com
 

@@ -24,7 +24,7 @@ KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
 KEPTN_CATALOG_BRANCH="rc8-pre"
 KEPTN_CATALOG_DIR="~/overview"
-TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
+TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 MICROK8S_CHANNEL="1.19/stable"
@@ -137,8 +137,8 @@ installationBundleDemo() {
   keptndemo_catalogonboard=true
   # use for easytravel
   keptndemo_easytravelonboard=true
-  keptndashboard_load=false
-  createMetrics=false
+  keptndashboard_load=true
+  createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
@@ -146,7 +146,7 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=false
-  post_flight=false
+  post_flight=true
   patch_config_service=false
 }
 
@@ -1048,8 +1048,7 @@ doInstallation() {
   createWorkshopUser
   certmanagerEnable
   patchConfigService
-  keptndemoUnleashConfigure
-
+  
   keptndemoCartsonboard    
   keptndemoCatalogonboard
 
@@ -1058,6 +1057,7 @@ doInstallation() {
   keptndemoEasytravelonboard
 
   gitMigrate
+  keptndemoUnleashConfigure
   
   keptndemoDeployCartsloadgenerator
   

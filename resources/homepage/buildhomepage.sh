@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # we build the image and tag it
-docker build -t shinojosa/nginxacm:0.7.3 .
+docker build -t pcjeffmac/nginxacm:0.8.1 .
 
 # Pushit to dockerhub
-docker push shinojosa/nginxacm:0.7.3
+docker push pcjeffmac/nginxacm:0.8.1
