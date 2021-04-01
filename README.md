@@ -142,7 +142,7 @@ The minimum required for running the default modules is c4.4xlarge with 35 Gigs 
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/main/keptn-in-a-box/keptn-in-a-box.sh
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/${KIAB_RELEASE}/keptn-in-a-box/.git' the master branch will be pointing to the actual release.
