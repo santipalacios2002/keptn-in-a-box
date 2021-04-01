@@ -407,6 +407,10 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
 ![#](doc/micro-diagram-with-keptn.png)
 
+
+## Available builds, problem patters and scenerios
+https://github.com/keptn/examples used for the sockshop app
+
 ## Contributing
 If you have any ideas for improvements or want to contribute that's great. Create a pull request or file an issue.
 
