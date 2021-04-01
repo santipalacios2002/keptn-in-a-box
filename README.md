@@ -420,5 +420,6 @@ If you have any ideas for improvements or want to contribute that's great. Creat
 
 ## Authors 
 sergio.hinojosa@dynatrace.com
+<br>
 jeffery.yarbrough@dynatrace.com
 
