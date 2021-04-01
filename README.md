@@ -418,9 +418,27 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
 ![#](doc/micro-diagram-with-keptn.png)
 
-
 ## Available builds, problem patters and scenerios
 https://github.com/keptn/examples used for the sockshop app
+
+## Proceeding to Next Steps
+### What we deployed
+
+KIAB (Keptn in a Box)
+
+| Componenet | Details |
+| ---------- | ------ |
+| Kubernetes | <ul><li>API</li><li>Cluster</li></ul> |
+| [Keptn](https://keptn.sh/) | <ul><li>API</li><li>Bridge</li></ul> |
+| Upstream Git | <ul><li>API</li><li>Repositories</li></ul> |
+| CI/CD | <ul><li>Jenkins</li><li>Unleash</li></ul> |
+| Order Application | <ul><li>Frontend Service</li><li>Customer Service</li><li>Catalog Service</li><li>Order Service</li></ul> |
+| SockShop Application | <ul><li>Carts</li><li>Carts DB</li></ul> |
+| Easytravel Application | <ul><li>Frontend</li><li>Backend</li><li>Nginx</li><li>Easytravel Mongo DB</li></ul> |
+
+
+
+
 
 ## Contributing
 If you have any ideas for improvements or want to contribute that's great. Create a pull request or file an issue.
