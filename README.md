@@ -323,6 +323,14 @@ For example triggering the first quality gate and evaluating a service will look
 2. 02-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
 3. 03-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
+#### Post Flight git 
+For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
+To make it easier, I created a script you can execute to add to the upstream git repo.
+Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
+```
+./update-git-keptn-post-flight.sh
+```
+
 ### Change your own Domain
 By default the Script will get the public ip and give it a magic domain with nip.io like ip=1.2.3.4 will become 1-2-3-4.nip.io. This way with an NGINX Ingress Keptn and all Istio and Kubernetes services are available with subdomains via the standard HTTP ports 443 and 80.
 
@@ -395,7 +403,6 @@ To Inspect do
 less +F /tmp/install.log
 ```
 and to have a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
-
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
