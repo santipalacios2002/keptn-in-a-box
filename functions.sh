@@ -137,8 +137,8 @@ installationBundleDemo() {
   keptndemo_catalogonboard=true
   # use for easytravel
   keptndemo_easytravelonboard=true
-  keptndashboard_load=false
-  createMetrics=false
+  keptndashboard_load=true
+  createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
@@ -146,7 +146,7 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=false
-  post_flight=false
+  post_flight=true
   patch_config_service=false
 }
 
