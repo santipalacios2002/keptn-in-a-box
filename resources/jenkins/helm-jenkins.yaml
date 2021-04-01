@@ -330,7 +330,7 @@ master:
                         branch('*/rc8-pre')
                       }
                     }
-                    scriptPath 'keptneasytravel.Jenkinsfilee'
+                    scriptPath 'keptneasytravel.Jenkinsfile'
                     lightweight()
                   }
                 }
