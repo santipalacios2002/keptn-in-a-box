@@ -1008,24 +1008,20 @@ doInstallation() {
   echo ""
   validateSudo
   setBashas
-
   dynatracePrintValidateCredentials
-
   enableVerbose
   updateUbuntu
   setupProAliases
-
   dockerInstall
   microk8sInstall
   microk8sStart
   microk8sEnableBasic
   microk8sEnableDashboard
   microk8sEnableRegistry
-  
+ 
   hostAliasPod
   
   dynatraceActiveGateInstall
-  
   istioInstall
   helmInstall
   certmanagerInstall
@@ -1033,41 +1029,30 @@ doInstallation() {
   keptnExamplesClone
   keptnCatalogClone
   dynatraceSaveCredentials
-
   setupMagicDomainPublicIp
-
   exposeK8Services
   patchKubernetesDashboard
-
   keptnInstall
   keptnDeployHomepage
-
   keptndemoUnleash
-  
   dynatraceConfigureMonitoring
   dynatraceConfigureWorkloads 
   keptnBridgeEap
   keptnBridgeDisableLogin
-  
   jenkinsDeploy
-
   gitDeploy
-
-  keptndemoCartsonboard 
-    
-  keptndemoCatalogonboard
-  keptndemoUnleashConfigure
-
   jmeterService
-
   loadKeptnDashboard
-  metricCreation
-
   createWorkshopUser
   certmanagerEnable
-  
   patchConfigService
-  
+  keptndemoUnleashConfigure
+
+  keptndemoCartsonboard    
+  keptndemoCatalogonboard
+
+  metricCreation
+ 
   keptndemoEasytravelonboard
 
   gitMigrate
