@@ -1048,8 +1048,7 @@ doInstallation() {
   createWorkshopUser
   certmanagerEnable
   patchConfigService
-  keptndemoUnleashConfigure
-
+  
   keptndemoCartsonboard    
   keptndemoCatalogonboard
 
@@ -1058,6 +1057,7 @@ doInstallation() {
   keptndemoEasytravelonboard
 
   gitMigrate
+  keptndemoUnleashConfigure
   
   keptndemoDeployCartsloadgenerator
   
