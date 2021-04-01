@@ -7,6 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
+ALERT: This install uses keptn 0.8.1
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
 A simple Bash script will set-up a fully functional Single Node Kubernetes Cluster with Dynatrace installed and Kubernetes Cluster, Cloud Applications and Events monitoring enabled. This script is used as [userdata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) when spinning up elastic compute images (ec2) in amazon web services, but it can run also manually in a Linux machine or VM with snap installed. The tested distro is  *Ubuntu Server 18.04 LTS & 20.04 LTS*
@@ -24,7 +25,7 @@ For spinning up instances automatically with AWS completely configured and set u
 - Set up of useful BASH Aliases for working with the command line
 - Enable autocompletion of Kubectl
 - Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.5.1 
+- Installation of Istio 1.9.1 
 - Installation of Helm Client
 - Enabling own Docker Registry for the Cluster
 - Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
@@ -89,7 +90,7 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
   ├── dynatrace             Scripts for integrating with Dynatrace
   ├── homepage              Sources of the homepage for displaying the Autonomous Cloud teaser  
   ├── ingress               Files and logic for mapping, exposing the endpoints and services. Creation of Certificates.
-  ├── istio					istio config files  
+  ├── istio                 istio config files  
   ├── jenkins               Deployment and configuration for Jenkins managed as code.
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
   └── virtualservices       YAML files for virtualservices 
@@ -151,10 +152,12 @@ sudo bash -c './keptn-in-a-box.sh'
 ```
 
 The script will ask for the following inputs.
+```bash
 Dynatrace Tenant ID []:
 Dynatrace API Token: []:
 Dynatrace PaaS Token: []:
 User Email []:
+```
 
 And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
@@ -359,7 +362,6 @@ This are the actual versions of the different Modules
 KIAB_RELEASE="release-0.8pre"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-# https://github.com/keptn/keptn
 KEPTN_VERSION=0.8.1
 KEPTN_DT_SERVICE_VERSION=0.12.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
@@ -370,7 +372,6 @@ KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
 KEPTN_CATALOG_BRANCH="rc8-pre"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="shinojosa/nginxacm:0.7.3"
-#KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 MICROK8S_CHANNEL="1.19/stable"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
