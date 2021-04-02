@@ -15,7 +15,7 @@ A simple Bash script will set-up a fully functional Single Node Kubernetes Clust
 For spinning up instances automatically with AWS completely configured and set up, and also automating the creation and management of Dynatrace environments, take a look at this project- [Dynatrace - Rest Tenant Automation](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) 
 
 
-![#](doc/keptn-in-a-box-autonomous-cloud-devops.gif)
+![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
 
 ## 🥜Keptn-in-a-Box - Features in a Nutshell
 - Update the ubuntu repository
@@ -58,7 +58,7 @@ For spinning up instances automatically with AWS completely configured and set u
     </p>
     </td>
     <td>
-      <img src="doc/keptn-in-a-box.png" width="700px" title="Keptn-in-a-Box"> 
+      <img src="doc/images/keptn-in-a-box.png" width="700px" title="Keptn-in-a-Box"> 
     </td>
   </tr>
 </table>
@@ -202,7 +202,7 @@ less +F /tmp/install.log
 
 Get the URL for KIAB.
 
-<img src="doc/KIAB_info.png" width="500"/>
+<img src="doc/images/KIAB_info.png" width="500"/>
 
 Open a Browser window with the URL.
 
@@ -308,7 +308,7 @@ Log in to your Dynatrace tenant and go to **Settings > Integration > Dynatrace A
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
 
 ### Configure the API Token
-<img src="doc/API_token.png" width="300"/>
+<img src="doc/images/API_token.png" width="300"/>
 
 ### Create a Dynatrace PAAS token.
 
@@ -378,11 +378,11 @@ If you want to learn more about Qualitygates and SRE Driven development, take a 
 https://tutorials.keptn.sh/tutorials/keptn-progressive-delivery-dynatrace/
 
 #### The sample pipelines
-<img src="doc/qualitygates.png" width="450px" title="Keptn-in-a-Box"> 
+<img src="doc/images/qualitygates.png" width="450px" title="Keptn-in-a-Box"> 
 
 For example triggering the first quality gate and evaluating a service will look something like this:
 
-<img src="doc/pipeline-validation.png" width="450px" title="Keptn-in-a-Box"> 
+<img src="doc/images/pipeline-validation.png" width="450px" title="Keptn-in-a-Box"> 
 
 > Info: The first launch of the pipeline wil fail since they need to be initialized and they need parameters to do so. it is ok, on the second run, it will ask you for your information.
 
@@ -480,14 +480,14 @@ and to have a verbose output (of every executed command) set the following contr
 This project was first presented to the Keptn Community in a Keptn Developer Meeting on the 23rd of April 2020.
 
 #### 📹Here is the recording of the Video: Keptn in a Box - Delivering Autonomous Cloud out of the Box
-<a alt="Keptn in a Box - Delivering Autonomous Cloud out of the Box" href="https://www.youtube.com/watch?v=A9ZYdih0anE" target="_blank"><img src="doc/Keptn-in-a-box-delivering-Autonomous-Cloud-out-of-the-box-YouTube.png" width="500px" title="Keptn-in-a-Box"/></a>
+<a alt="Keptn in a Box - Delivering Autonomous Cloud out of the Box" href="https://www.youtube.com/watch?v=A9ZYdih0anE" target="_blank"><img src="doc/images/Keptn-in-a-box-delivering-Autonomous-Cloud-out-of-the-box-YouTube.png" width="500px" title="Keptn-in-a-Box"/></a>
 
 
 Join the [Keptn Community](https://github.com/keptn/community) for more interesting projects and keep up to date with Keptn!
 
 
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
-![#](doc/micro-diagram-with-keptn.png)
+![#](doc/images/micro-diagram-with-keptn.png)
 
 ## Available builds, problem patters and scenerios
 https://github.com/keptn/examples used for the sockshop app
