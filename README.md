@@ -200,15 +200,13 @@ For inspecting the installation on realtime type:
 less +F /tmp/install.log
 ```
 
-Get the URL for KIAB.
+Now you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
-Open a Browser window with the URL.
+Just open a Browser with the IP.
 
-### Next
-
-### Run Pipeline
+### Next Run A Pipeline
 
 Click on **"Jenkins"**
 
@@ -227,6 +225,9 @@ After selecting the pipeline click **"build"**
 
 [Review Pipelines](#the-sample-pipelines)
 
+### Next Review and understand the problem scenerios
+
+[Application Overview and Problem Scenerios](doc/index.md)
 
 #####  The installed modules
 
