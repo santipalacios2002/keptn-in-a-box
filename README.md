@@ -266,7 +266,7 @@ The script will install all the modules shown above and the github repository wi
      > for SaaS
 
 ## Configure the API Token
-<img src="doc/images/API_token.png" width="300"/>
+<img src="doc/API_token.png" width="300"/>
 
 Generate an API token and a PaaS token in your Dynatrace environment.
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
