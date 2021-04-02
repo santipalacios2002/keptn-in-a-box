@@ -227,7 +227,7 @@ After selecting the pipeline click **"build"**
 
 ### Next Review and understand the problem scenerios
 
-[Application Overview and Problem Scenerios](doc/index.md)
+:arrow_right:[Application Overview and Problem Scenerios](doc/index.md)
 
 #####  The installed modules
 
