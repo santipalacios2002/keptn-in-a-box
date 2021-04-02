@@ -67,7 +67,7 @@ For spinning up instances automatically with AWS completely configured and set u
 
 ## 📚Tutorial
 For a step by step understanding of how Keptn-in-a-Box works and how to use it, take a look at the Keptn in a Box tutorial [https://tutorials.keptn.sh/tutorials/keptn-in-a-box/)](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07)
-
+(This tutorial covers the base KIAB install)
 
 ## Prerequisites
 
@@ -115,6 +115,20 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 | t2.xlarge  | 4         | 16               |
 | t2.2xlarge | 8         | 32               |
 | c4.4xlarge | 16        | 30               | (preferred for full)
+
+### Setup and Configure AWS Instance.
+
+Set the storage size to at least 40 GB.
+
+Add a tag with key=Project and value=KIAB
+
+If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
+
+22/SSH
+80/HTTP
+443/HTTPS
+8080/Custom
+4200/Custom
 
 ### installationBundleKeptnOnly
 The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
@@ -421,7 +435,7 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 ## Available builds, problem patters and scenerios
 https://github.com/keptn/examples used for the sockshop app
 
-## Proceeding to Next Steps
+## Proceed to Next Steps
 ### What we deployed
 
 KIAB (Keptn in a Box)
