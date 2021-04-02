@@ -223,11 +223,11 @@ After selecting the pipeline click **"build"**
 
 <img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
 
-[Review Pipelines](#the-sample-pipelines)
+:arrow_right: [Review Pipelines](#the-sample-pipelines)
 
 ### Next Review and understand the problem scenerios
 
-:arrow_right:[Application Overview and Problem Scenerios](doc/index.md)
+:arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
 
 #####  The installed modules
 
