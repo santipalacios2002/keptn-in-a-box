@@ -141,7 +141,7 @@ The minimum required for running the default modules is t2.2xlarge with 30 Gigs 
 
 3. Add a tag with key=Project and value=KIAB
 
-4. Open Ports
+4. Open Ports <br>
 If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
 
 * 22/SSH
@@ -152,7 +152,7 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 
 
 
-## Get started in 1 - 2 - 3
+## Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -160,16 +160,22 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/main/keptn-in-a-box/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/keptn-in-a-box.sh
 ```
 
-> You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/${KIAB_RELEASE}/keptn-in-a-box/.git' the master branch will be pointing to the actual release.
+> You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
 
 ```bash
 curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/keptn-in-a-box.sh
 ```
 
-#### 3. Execute the file with sudo rights.
+#### 3. Change permissions on script.
+
+```bash
+chmod +x keptn-in-a-box.sh
+```
+
+#### 4. Execute the file with sudo rights.
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
 ```
