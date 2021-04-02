@@ -118,11 +118,13 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 
 ### Setup and Configure AWS Instance.
 
-1. Set the storage size to at least 40 GB.
+1. Ubuntu 20.04 LTS is recommended.
 
-2. Add a tag with key=Project and value=KIAB
+2. Set the storage size to at least 40 GB.
 
-3. Open Ports
+3. Add a tag with key=Project and value=KIAB
+
+4. Open Ports
 If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
 
 * 22/SSH
