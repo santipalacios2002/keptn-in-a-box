@@ -150,6 +150,7 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
+[link](#Create Tokens)
 
 ## Get started in 1 - 2 - 3 - 4
 
@@ -187,12 +188,23 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
+answer **'y'** if the information is correct.
+
+Press **enter**
+
 And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
 ```bash
 less +F /tmp/install.log
 ```
+
+Get the URL for KIAB.
+
+<img src="doc/KIAB_info.png" width="500"/>
+
+Open a Browser window with the URL.
+
 
 #####  The installed modules
 
@@ -265,11 +277,20 @@ The script will install all the modules shown above and the github repository wi
      > https://{your-environment-id}.live.dynatrace.com 
      > for SaaS
 
-## Configure the API Token
-<img src="doc/API_token.png" width="300"/>
+## Create Tokens
 
 Generate an API token and a PaaS token in your Dynatrace environment.
+
+Log in to your Dynatrace tenant and go to **Settings > Integration > Dynatrace API**. Then, create a new API token with the following permissions
+
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
+
+### Configure the API Token
+<img src="doc/API_token.png" width="300"/>
+
+### Create a Dynatrace PAAS token.
+
+In your Dynatrace tenant, go to **Settings > Integration > Platform as a Service**, and create a new PaaS Token.
 
 For more details on the Integration with Dynatrace read the following links:
 - [OneAgent Operator](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/oneagent-with-helm/)
