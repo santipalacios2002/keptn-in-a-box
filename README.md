@@ -130,7 +130,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 ### installationBundleDemo
 The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
 
-### installationBundleAll
+### :white_check_mark: installationBundleAll
 The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
 
 ### Setup and Configure AWS Instance.
