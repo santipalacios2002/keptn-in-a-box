@@ -150,7 +150,8 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-[Create Toekns](#create-tokens)
+### Next
+[Create Tokens](#create-tokens)
 
 ## Get started in 1 - 2 - 3 - 4
 
@@ -204,6 +205,27 @@ Get the URL for KIAB.
 <img src="doc/KIAB_info.png" width="500"/>
 
 Open a Browser window with the URL.
+
+### Next
+
+### Run Pipeline
+
+Click on **"Jenkins"**
+
+Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
+
+Login to Jenkins with the following credentials
+
+* username = keptn
+* password = keptn
+
+<img src="doc/images/Lab_1_Jenkins_Log_In.png" width="250"/>
+
+After selecting the pipeline click **"build"**
+
+<img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
+
+[Review Pipelines](#the-sample-pipelines)
 
 
 #####  The installed modules
@@ -347,10 +369,11 @@ installationBundleAll
 # - Uncomment below for installing a PerformanceAsAService Box
 #installationBundlePerformanceAsAService
 ```
+
 This will install single node kubernetes cluster, keptn, k8 dashboard and expose the endpoints. It will also clone the examples, onboard the carts sample app and add a quality gate.  
 
 ### 🏁🚦Performance as a Service  (installationBundlePerformanceAsAService)
-This scenario will create a Box for delivering Performance as a Service in an instant. It will install the QualityGates functionality of Keptn  (not installing the other Keptn services and/or components such as Istio). It will install Jenkins preconfigured and managed as Code with 3 example pipelines. You only need to Tag your service in Dynatrace and (if wanting to do a loadtest) provide the URL of your application do a sample Loadtest and validate it. 
+This scenario will create a Box for delivering Performance as a Service in an instant. It will install the QualityGates functionality of Keptn  (not installing the other Keptn services and/or components such as Istio). It will install Jenkins preconfigured and managed as Code with 6 example pipelines. You only need to Tag your service in Dynatrace and (if wanting to do a loadtest) provide the URL of your application do a sample Loadtest and validate it. 
 If you want to learn more about Qualitygates and SRE Driven development, take a look at the following tutorial:
 https://tutorials.keptn.sh/tutorials/keptn-progressive-delivery-dynatrace/
 
@@ -363,16 +386,19 @@ For example triggering the first quality gate and evaluating a service will look
 
 > Info: The first launch of the pipeline wil fail since they need to be initialized and they need parameters to do so. it is ok, on the second run, it will ask you for your information.
 
-
-1. 01-qualitygate-evaluation -  will do only the evaluation of the given service and timeframe
-2. 02-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
-3. 03-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
+1. 01-deploy-order-application - Deploy the keptnorders application
+2. 01.1-easytravel-delivery - Deploy the easytravel application
+3. 01.2-Sockshop Delivery - Deploy the sockshop application
+4. 02-qualitygate-evaluation -  will do only the evaluation of the given service and timeframe
+5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
+6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
 To make it easier, I created a script you can execute to add to the upstream git repo.
 Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
-```
+
+```bash
 ./update-git-keptn-post-flight.sh
 ```
 
