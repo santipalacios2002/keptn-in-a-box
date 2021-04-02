@@ -151,7 +151,6 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 4200/Custom
 
 
-
 ## Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
@@ -266,7 +265,8 @@ The script will install all the modules shown above and the github repository wi
      > https://{your-environment-id}.live.dynatrace.com 
      > for SaaS
 
-
+## Configure the API Token
+![#](doc/API_token.png)
 
 Generate an API token and a PaaS token in your Dynatrace environment.
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
