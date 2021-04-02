@@ -118,17 +118,18 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 
 ### Setup and Configure AWS Instance.
 
-Set the storage size to at least 40 GB.
+1. Set the storage size to at least 40 GB.
 
-Add a tag with key=Project and value=KIAB
+2. Add a tag with key=Project and value=KIAB
 
+3. Open Ports
 If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
 
-22/SSH
-80/HTTP
-443/HTTPS
-8080/Custom
-4200/Custom
+*22/SSH
+*80/HTTP
+*443/HTTPS
+*8080/Custom
+*4200/Custom
 
 ### installationBundleKeptnOnly
 The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
