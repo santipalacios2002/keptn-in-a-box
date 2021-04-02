@@ -476,6 +476,28 @@ less +F /tmp/install.log
 ```
 and to have a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
 
+If you need to rebuild the environment, follow these steps.
+
+```bash
+cd ~/keptn-in-a-box
+```
+
+This script will reset the Ubuntu instance by removing Kubernetes and the Dynatrace ActiveGate.
+
+```bash
+./resetenv.sh
+```
+
+Now we need to re-initialize the environment.
+
+Run the following commands, then follow the process from above.
+    
+```bash
+cd ~
+sudo bash -c './keptn-in-a-box.sh'
+```
+
+
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
 This project was first presented to the Keptn Community in a Keptn Developer Meeting on the 23rd of April 2020.
@@ -507,9 +529,6 @@ KIAB (Keptn in a Box)
 | Order Application | <ul><li>Frontend Service</li><li>Customer Service</li><li>Catalog Service</li><li>Order Service</li></ul> |
 | SockShop Application | <ul><li>Carts</li><li>Carts DB</li></ul> |
 | Easytravel Application | <ul><li>Frontend</li><li>Backend</li><li>Nginx</li><li>Easytravel Mongo DB</li></ul> |
-
-
-
 
 
 ## Contributing

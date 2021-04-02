@@ -32,17 +32,17 @@ This is a summary of the versions followed by a description of the problem scena
 
 #### Deploy dtdemos/customer-service:2
 
-<img src="../../assets/images/usecase1.png" width="500"/>
+<img src="images/usecase1.png" width="500"/>
 
 ### Deploy dtdemos/order-service:2 
 
 Both these scenearios are enabled
 
-<img src="../../assets/images/usecase2.png" width="500"/>
+<img src="images/usecase2.png" width="500"/>
 
 and...
 
-<img src="../../assets/images/usecase3.png" width="500"/>
+<img src="images/usecase3.png" width="500"/>
 
 ### Examine Dynatrace 
 
@@ -52,17 +52,17 @@ Open Dynatrace and navigate to **Hosts** in the menu and select the host.
 
 Here we can examine all the proceses automatically discovered by the Dynatrace oneAgent.
 
-<img src="../../assets/images/pre_host.png" width="400"/>
+<img src="images/pre_host.png" width="400"/>
 
 We can also see the processes for the order application.
 
-<img src="../../assets/images/pre_processes.png" width="300"/>
+<img src="images/pre_processes.png" width="300"/>
 
 Next we can examine the Transactions and Services.
 
 Select **Transactions and Services** from the menu.
 
-<img src="../../assets/images/pre_services.png" width="400"/>
+<img src="images/pre_services.png" width="400"/>
 
 You can also change the focus by using the _management zone_ filter.
 
@@ -70,7 +70,7 @@ Finally, we can also see how the KIAB configured Kubernetes cluster monitoring.
 
 Select **Kubernetes** from the menu.
 
-<img src="../../assets/images/pre_kube.png" width="400"/>
+<img src="images/pre_kube.png" width="400"/>
 
 Pre-configured items also include:
 
@@ -79,29 +79,10 @@ Pre-configured items also include:
 1. Calculated Service Metrics
 1. Management Zones
 1. Automatically Applied Tags
+1. Problem Notification
+1. Process Group Naming Rule
+1. Service Naming Rule
 
 Now that we are more familiar with what we have running, let's continue to the next activity.
 
-### Troubleshooting
-
-If you need to rebuild the environment, follow these steps.
-
-```bash
-cd ~/keptn-in-a-box
-```
-
-This script will reset the Ubuntu instance by removing Kubernetes and the Dynatrace ActiveGate.
-
-```bash
-./resetenv.sh
-```
-
-Now we need to re-initialize the environment.
-
-Run the following commands, then follow the process from above.
-    
-```bash
-cd ~
-sudo bash -c './keptn-in-a-box.sh'
-```
 
