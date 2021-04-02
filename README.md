@@ -116,6 +116,23 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 | t2.2xlarge | 8         | 32               |
 | c4.4xlarge | 16        | 30               | (preferred for full)
 
+### installationBundleKeptnOnly
+The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
+
+Adding more RAM and more CPUs will speed up things. Depending what you want to achieve. Also consider that you'll have available less than 2 Gigs of disk space. This is the available disk after a minimal installation.
+
+```bash
+df -h /
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        20G  5.8G   14G  30% /
+```
+
+### installationBundleDemo
+The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
+
+### installationBundleAll
+The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
+
 ### Setup and Configure AWS Instance.
 
 1. Ubuntu 20.04 LTS is recommended.
@@ -133,23 +150,7 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### installationBundleKeptnOnly
-The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
 
-Adding more RAM and more CPUs will speed up things. Depending what you want to achieve. Also consider that you'll have available less than 2 Gigs of disk space. This is the available disk after a minimal installation.
-
-```bash
-df -h /
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root        20G  5.8G   14G  30% /
-```
-
-
-### installationBundleDemo
-The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
-
-### installationBundleAll
-The minimum required for running the default modules is c4.4xlarge with 35 Gigs of Disk space.We recommend 30 Gigs and c4.4xlarge for the best experience.
 
 ## Get started in 1 - 2 - 3
 
