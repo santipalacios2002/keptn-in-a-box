@@ -40,10 +40,12 @@ if [[ -d "easytravel-frontend" ]]; then
     echo "load jmeter.conf.yaml"
     keptn add-resource --project=easytravel --service=easytravel-frontend --stage=staging --resource=jmeter/frontend/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
     keptn add-resource --project=easytravel --service=easytravel-backend --stage=staging --resource=jmeter/backend/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
+    keptn add-resource --project=easytravel --service=easytravel-www --stage=staging --resource=jmeter/www/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
 
     # add jmeter config for production
     keptn add-resource --project=easytravel --service=easytravel-frontend --stage=production --resource=jmeter/frontend/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
     keptn add-resource --project=easytravel --service=easytravel-backend --stage=production --resource=jmeter/backend/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
+    keptn add-resource --project=easytravel --service=easytravel-www --stage=production --resource=jmeter/www/jmeter.conf.yaml --resourceUri=jmeter/jmeter.conf.yaml
     
 else 
     echo "The helmcharts for easytravel are not present"
