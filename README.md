@@ -140,6 +140,7 @@ The minimum required for running the default modules is t2.2xlarge with 30 Gigs 
 2. Set the storage size to at least 60 GB.
 
 3. Add a tag with key=Project and value=KIAB
+
 3.1 Add a tag with Key=Name and Value=<FirstName-LastName>
 
 4. Open Ports <br>
