@@ -15,7 +15,7 @@ A simple Bash script will set-up a fully functional Single Node Kubernetes Clust
 For spinning up instances automatically with AWS completely configured and set up, and also automating the creation and management of Dynatrace environments, take a look at this project- [Dynatrace - Rest Tenant Automation](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) 
 
 
-![#](doc/keptn-in-a-box-autonomous-cloud-devops.gif)
+![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
 
 ## 🥜Keptn-in-a-Box - Features in a Nutshell
 - Update the ubuntu repository
@@ -58,7 +58,7 @@ For spinning up instances automatically with AWS completely configured and set u
     </p>
     </td>
     <td>
-      <img src="doc/keptn-in-a-box.png" width="700px" title="Keptn-in-a-Box"> 
+      <img src="doc/images/keptn-in-a-box.png" width="700px" title="Keptn-in-a-Box"> 
     </td>
   </tr>
 </table>
@@ -67,7 +67,7 @@ For spinning up instances automatically with AWS completely configured and set u
 
 ## 📚Tutorial
 For a step by step understanding of how Keptn-in-a-Box works and how to use it, take a look at the Keptn in a Box tutorial [https://tutorials.keptn.sh/tutorials/keptn-in-a-box/)](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-07)
-
+(This tutorial covers the base KIAB install)
 
 ## Prerequisites
 
@@ -127,14 +127,33 @@ Filesystem      Size  Used Avail Use% Mounted on
 /dev/root        20G  5.8G   14G  30% /
 ```
 
-
 ### installationBundleDemo
 The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
 
-### installationBundleAll
-The minimum required for running the default modules is c4.4xlarge with 35 Gigs of Disk space.We recommend 30 Gigs and c4.4xlarge for the best experience.
+### :white_check_mark: installationBundleAll
+The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
 
-## Get started in 1 - 2 - 3
+### Setup and Configure AWS Instance.
+
+1. Ubuntu 20.04 LTS is recommended.
+
+2. Set the storage size to at least 40 GB.
+
+3. Add a tag with key=Project and value=KIAB
+
+4. Open Ports <br>
+If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
+
+* 22/SSH
+* 80/HTTP
+* 443/HTTPS
+* 8080/Custom
+* 4200/Custom
+
+### Next
+[Create Tokens](#create-tokens)
+
+## Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -142,16 +161,22 @@ The minimum required for running the default modules is c4.4xlarge with 35 Gigs 
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/keptn-in-a-box.sh
 ```
 
-> You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/${KIAB_RELEASE}/keptn-in-a-box/.git' the master branch will be pointing to the actual release.
+> You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
 
 ```bash
 curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/release-0.8pre/keptn-in-a-box.sh
 ```
 
-#### 3. Execute the file with sudo rights.
+#### 3. Change permissions on script.
+
+```bash
+chmod +x keptn-in-a-box.sh
+```
+
+#### 4. Execute the file with sudo rights.
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
 ```
@@ -164,12 +189,45 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
+answer **'y'** if the information is correct.
+
+Press **enter**
+
 And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
 ```bash
 less +F /tmp/install.log
 ```
+
+Now you can get the URL for your KIAB homepage.
+
+<img src="doc/images/KIAB_info.png" width="500"/>
+
+Just open a Browser with the IP.
+
+### Next Run A Pipeline
+
+Click on **"Jenkins"**
+
+Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
+
+Login to Jenkins with the following credentials
+
+* username = keptn
+* password = keptn
+
+<img src="doc/images/Lab_1_Jenkins_Log_In.png" width="250"/>
+
+After selecting the pipeline click **"build"**
+
+<img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
+
+:arrow_right: [Review Pipelines](#the-sample-pipelines)
+
+### Next Review and understand the problem scenerios
+
+:arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
 
 #####  The installed modules
 
@@ -242,10 +300,20 @@ The script will install all the modules shown above and the github repository wi
      > https://{your-environment-id}.live.dynatrace.com 
      > for SaaS
 
-
+## Create Tokens
 
 Generate an API token and a PaaS token in your Dynatrace environment.
+
+Log in to your Dynatrace tenant and go to **Settings > Integration > Dynatrace API**. Then, create a new API token with the following permissions
+
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
+
+### Configure the API Token
+<img src="doc/images/API_token.png" width="300"/>
+
+### Create a Dynatrace PAAS token.
+
+In your Dynatrace tenant, go to **Settings > Integration > Platform as a Service**, and create a new PaaS Token.
 
 For more details on the Integration with Dynatrace read the following links:
 - [OneAgent Operator](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/oneagent-with-helm/)
@@ -302,26 +370,38 @@ installationBundleAll
 # - Uncomment below for installing a PerformanceAsAService Box
 #installationBundlePerformanceAsAService
 ```
+
 This will install single node kubernetes cluster, keptn, k8 dashboard and expose the endpoints. It will also clone the examples, onboard the carts sample app and add a quality gate.  
 
 ### 🏁🚦Performance as a Service  (installationBundlePerformanceAsAService)
-This scenario will create a Box for delivering Performance as a Service in an instant. It will install the QualityGates functionality of Keptn  (not installing the other Keptn services and/or components such as Istio). It will install Jenkins preconfigured and managed as Code with 3 example pipelines. You only need to Tag your service in Dynatrace and (if wanting to do a loadtest) provide the URL of your application do a sample Loadtest and validate it. 
+This scenario will create a Box for delivering Performance as a Service in an instant. It will install the QualityGates functionality of Keptn  (not installing the other Keptn services and/or components such as Istio). It will install Jenkins preconfigured and managed as Code with 6 example pipelines. You only need to Tag your service in Dynatrace and (if wanting to do a loadtest) provide the URL of your application do a sample Loadtest and validate it. 
 If you want to learn more about Qualitygates and SRE Driven development, take a look at the following tutorial:
 https://tutorials.keptn.sh/tutorials/keptn-progressive-delivery-dynatrace/
 
 #### The sample pipelines
-<img src="doc/qualitygates.png" width="450px" title="Keptn-in-a-Box"> 
+<img src="doc/images/qualitygates.png" width="450px" title="Keptn-in-a-Box"> 
 
 For example triggering the first quality gate and evaluating a service will look something like this:
 
-<img src="doc/pipeline-validation.png" width="450px" title="Keptn-in-a-Box"> 
+<img src="doc/images/pipeline-validation.png" width="450px" title="Keptn-in-a-Box"> 
 
 > Info: The first launch of the pipeline wil fail since they need to be initialized and they need parameters to do so. it is ok, on the second run, it will ask you for your information.
 
+1. 01-deploy-order-application - Deploy the keptnorders application
+2. 01.1-easytravel-delivery - Deploy the easytravel application
+3. 01.2-Sockshop Delivery - Deploy the sockshop application
+4. 02-qualitygate-evaluation -  will do only the evaluation of the given service and timeframe
+5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
+6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
-1. 01-qualitygate-evaluation -  will do only the evaluation of the given service and timeframe
-2. 02-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
-3. 03-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
+#### Post Flight git 
+For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
+To make it easier, I created a script you can execute to add to the upstream git repo.
+Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
+
+```bash
+./update-git-keptn-post-flight.sh
+```
 
 ### Change your own Domain
 By default the Script will get the public ip and give it a magic domain with nip.io like ip=1.2.3.4 will become 1-2-3-4.nip.io. This way with an NGINX Ingress Keptn and all Istio and Kubernetes services are available with subdomains via the standard HTTP ports 443 and 80.
@@ -396,24 +476,60 @@ less +F /tmp/install.log
 ```
 and to have a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
 
+If you need to rebuild the environment, follow these steps.
+
+```bash
+cd ~/keptn-in-a-box
+```
+
+This script will reset the Ubuntu instance by removing Kubernetes and the Dynatrace ActiveGate.
+
+```bash
+./resetenv.sh
+```
+
+Now we need to re-initialize the environment.
+
+Run the following commands, then follow the process from above.
+    
+```bash
+cd ~
+sudo bash -c './keptn-in-a-box.sh'
+```
+
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
 This project was first presented to the Keptn Community in a Keptn Developer Meeting on the 23rd of April 2020.
 
 #### 📹Here is the recording of the Video: Keptn in a Box - Delivering Autonomous Cloud out of the Box
-<a alt="Keptn in a Box - Delivering Autonomous Cloud out of the Box" href="https://www.youtube.com/watch?v=A9ZYdih0anE" target="_blank"><img src="doc/Keptn-in-a-box-delivering-Autonomous-Cloud-out-of-the-box-YouTube.png" width="500px" title="Keptn-in-a-Box"/></a>
+<a alt="Keptn in a Box - Delivering Autonomous Cloud out of the Box" href="https://www.youtube.com/watch?v=A9ZYdih0anE" target="_blank"><img src="doc/images/Keptn-in-a-box-delivering-Autonomous-Cloud-out-of-the-box-YouTube.png" width="500px" title="Keptn-in-a-Box"/></a>
 
 
 Join the [Keptn Community](https://github.com/keptn/community) for more interesting projects and keep up to date with Keptn!
 
 
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
-![#](doc/micro-diagram-with-keptn.png)
-
+![#](doc/images/micro-diagram-with-keptn.png)
 
 ## Available builds, problem patters and scenerios
 https://github.com/keptn/examples used for the sockshop app
+
+## Proceed to Next Steps
+### What we deployed
+
+KIAB (Keptn in a Box)
+
+| Componenet | Details |
+| ---------- | ------ |
+| Kubernetes | <ul><li>API</li><li>Cluster</li></ul> |
+| [Keptn](https://keptn.sh/) | <ul><li>API</li><li>Bridge</li></ul> |
+| Upstream Git | <ul><li>API</li><li>Repositories</li></ul> |
+| CI/CD | <ul><li>Jenkins</li><li>Unleash</li></ul> |
+| Order Application | <ul><li>Frontend Service</li><li>Customer Service</li><li>Catalog Service</li><li>Order Service</li></ul> |
+| SockShop Application | <ul><li>Carts</li><li>Carts DB</li></ul> |
+| Easytravel Application | <ul><li>Frontend</li><li>Backend</li><li>Nginx</li><li>Easytravel Mongo DB</li></ul> |
+
 
 ## Contributing
 If you have any ideas for improvements or want to contribute that's great. Create a pull request or file an issue.
