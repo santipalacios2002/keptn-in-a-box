@@ -308,19 +308,22 @@ The script will install all the modules shown above and the github repository wi
 
 >The script was first created  to be run as root without an interactive shell since it is passed as userdata on creation of the elastic cloud machine via a python rest automation program.
 
-## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding it's credentials
+## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding creating your credentials
 
-- Add the Dynatrace information to the variables:
+- Use the Dynatrace information for the inputs to the script:
 
-	- TENANT="https://mytenant.live.dynatrace.com"
+	- TENANT="mytenant.live.dynatrace.com"
 	- PAASTOKEN=myDynatracePaaSToken
 	- APITOKEN=myDynatraceApiToken
 
-     > For Tenant add it with protocol like:
-     >  *https://{your-domain}/e/{your-environment-id}* 
+     > for your tenent just use the folowing:
+     >  *{your-domain}/e/{your-environment-id}* 
      > for managed or 
-     > https://{your-environment-id}.live.dynatrace.com 
+     > {your-environment-id}.live.dynatrace.com 
      > for SaaS
+     > you can also use 
+     > {your-environment-id}.sprint.dynatracelabs.com
+     > or dev tenant if inclined.
 
 ## Create Tokens
 
@@ -348,6 +351,7 @@ For more details on the Integration with Dynatrace read the following links:
 
 With the **installationModulesDefault** or **installationModulesFull** Dynatrace is automatically installed if the credentials are configured.
 
+:arrow_right:  [Back](#create-tokens)
 
 ## Other installation options
 ### Spin your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
