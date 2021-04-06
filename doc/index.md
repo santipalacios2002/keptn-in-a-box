@@ -83,6 +83,8 @@ Pre-configured items also include:
 1. Process Group Naming Rule
 1. Service Naming Rule
 
-Now that we are more familiar with what we have running, let's [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre#3---understanding-and-setup-for-load-testing).
+Now that we are more familiar with what we have running, Let's continue.
+
+### [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre#3---understanding-and-setup-for-load-testing).
 
 
