@@ -223,19 +223,26 @@ After selecting the pipeline click **"build"**
 
 <img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
 
+Now we can follow the next steps to review the Pipelines and understand the different scenerios.
+Just follow the arrows.
+
+### 1 - Review the Pipelines
+
 :arrow_right: [Review Pipelines](#the-sample-pipelines)
 
-### Next Review and understand the problem scenerios
+### 2 - Review and understand the problem scenerios
 
 :arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
 
-### Next Understanding and setup for Load Testing
+### 3 - Understanding and setup for Load Testing
 
 :arrow_right: [Load Test Analysis Performance Issue](doc/index-2.md)
 
-### Next SLO's and Test Analysis
+### 4 - SLO's and Test Analysis
 
 :arrow_right: [SLOs and Load Test Analysis Error Issue](doc/index-3.md)
+
+## Further reading to understand the installed modules and troubleshooting steps.
 
 #####  The installed modules
 
