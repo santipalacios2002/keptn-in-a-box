@@ -191,16 +191,17 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
-answer **'y'** if the information is correct.
+answer **'y'** if the information is correct, then Press **enter**
 
-Press **enter**
-
-And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
+And that was it! Yes that easy!  
+This command will run the installation in a bash shell as sudo and send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
 ```bash
 less +F /tmp/install.log
 ```
+
+Be patient, the deployment process will average ~20 min.
 
 :white_check_mark: Now you can get the URL for your KIAB homepage.
 
@@ -208,7 +209,7 @@ less +F /tmp/install.log
 
 Just open a Browser with the IP.
 
-### :white_check_mark: Next Run A Pipeline
+### :arrow_right: Next Run A Pipeline
 
 Click on **"Jenkins"**
 
