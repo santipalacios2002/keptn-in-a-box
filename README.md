@@ -229,6 +229,10 @@ After selecting the pipeline click **"build"**
 
 :arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
 
+### Next Understanding and setup for Load Testing
+
+:arrow_right: [Load Test Analysis Performance Issue](doc/index-2.md)
+
 #####  The installed modules
 
 The default installation is **installationBundleAll** which sets the control flags to true or false for the following modules:
@@ -515,7 +519,6 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 ## Available builds, problem patters and scenerios
 https://github.com/keptn/examples used for the sockshop app
 
-## Proceed to Next Steps
 ### What we deployed
 
 KIAB (Keptn in a Box)
