@@ -547,7 +547,7 @@ cd ~
 sudo bash -c './keptn-in-a-box.sh'
 ```
 
-[Continue](#run-it-in-an-available-machine--manually)
+[Continue from step 4](#run-it-in-an-available-machine--manually)
 
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
