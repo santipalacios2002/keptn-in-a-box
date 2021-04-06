@@ -150,8 +150,10 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### Next
-:white_check_mark: [Create Tokens](#create-tokens)
+### Create Toekns
+Next You will need to create the necessary tokens. 
+
+:white_check_mark:  [Create Tokens](#create-tokens)
 
 ## :white_check_mark: Get started in 1 - 2 - 3 - 4
 
