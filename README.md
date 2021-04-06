@@ -157,7 +157,9 @@ Next You will need to create the necessary tokens.
 
 :arrow_right:  [Create Tokens](#create-tokens)
 
-## :arrow_right: Get started in 1 - 2 - 3 - 4
+Now you are ready to start the install process.
+
+### :arrow_right: Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
