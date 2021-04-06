@@ -540,7 +540,7 @@ Delete your kubernetes connection in Dynatrace, under "cloud and virtualization"
 
 Now we need to re-initialize the environment.
 
-Run the following commands, then follow the process from above.
+Run the following commands, then follow the process from Step 4 above.
     
 ```bash
 cd ~
