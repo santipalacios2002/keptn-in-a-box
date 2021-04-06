@@ -151,9 +151,9 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 4200/Custom
 
 ### Next
-[Create Tokens](#create-tokens)
+:white_check_mark:[Create Tokens](#create-tokens)
 
-## Get started in 1 - 2 - 3 - 4
+## :white_check_mark: Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -200,13 +200,13 @@ For inspecting the installation on realtime type:
 less +F /tmp/install.log
 ```
 
-Now you can get the URL for your KIAB homepage.
+:white_check_mark: Now you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
 Just open a Browser with the IP.
 
-### Next Run A Pipeline
+### :white_check_mark: Next Run A Pipeline
 
 Click on **"Jenkins"**
 
