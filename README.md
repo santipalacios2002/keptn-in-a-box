@@ -253,6 +253,9 @@ Just follow the arrows.
 
 :arrow_right: [Upstream git](#post-flight-git)
 
+### 6 - Available builds, problem patters and scenerios for Sockshop
+https://github.com/keptn/examples used for the sockshop app
+
 ## Further reading to understand the installed modules and troubleshooting steps.
 
 #####  The installed modules
@@ -531,7 +534,6 @@ cd ~
 sudo bash -c './keptn-in-a-box.sh'
 ```
 
-
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
 This project was first presented to the Keptn Community in a Keptn Developer Meeting on the 23rd of April 2020.
@@ -546,8 +548,6 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
 ![#](doc/images/micro-diagram-with-keptn.png)
 
-## Available builds, problem patters and scenerios
-https://github.com/keptn/examples used for the sockshop app
 
 ### What we deployed
 
