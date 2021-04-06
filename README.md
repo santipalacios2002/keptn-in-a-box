@@ -536,6 +536,8 @@ This script will reset the Ubuntu instance by removing Kubernetes and the Dynatr
 ./resetenv.sh
 ```
 
+Delete your kubernetes connection in Dynatrace, under "cloud and virtualization"
+
 Now we need to re-initialize the environment.
 
 Run the following commands, then follow the process from above.
@@ -544,6 +546,9 @@ Run the following commands, then follow the process from above.
 cd ~
 sudo bash -c './keptn-in-a-box.sh'
 ```
+
+[Continue from step 4](#run-it-in-an-available-machine--manually)
+
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
