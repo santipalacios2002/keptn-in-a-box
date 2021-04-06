@@ -137,11 +137,13 @@ The minimum required for running the default modules is t2.2xlarge with 30 Gigs 
 
 1. Ubuntu 20.04 LTS is recommended.
 
-2. Set the storage size to at least 40 GB.
+1. Set the storage size to at least 60 GB.
 
-3. Add a tag with key=Project and value=KIAB
+1. Add a tag with key=Project and value=KIAB
 
-4. Open Ports <br>
+1. Add a tag with Key=Name and Value=FirstName-LastName
+
+1. Open Ports <br>
 If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
 
 * 22/SSH
@@ -150,10 +152,14 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### Next
-[Create Tokens](#create-tokens)
+### Create Tokens
+Next You will need to create the necessary tokens. 
 
-## Get started in 1 - 2 - 3 - 4
+:arrow_right:  [Create Tokens](#create-tokens-1)
+
+Now you are ready to start the install process.
+
+### :arrow_right: Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -189,24 +195,25 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
-answer **'y'** if the information is correct.
+answer **'y'** if the information is correct, then Press **enter**
 
-Press **enter**
-
-And that was it! Yes that easy!  This command will run installation in a bash shell as sudo, will prompt you for the password and will send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
+And that was it! Yes that easy!  
+This command will run the installation in a bash shell as sudo and send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
 ```bash
 less +F /tmp/install.log
 ```
 
-Now you can get the URL for your KIAB homepage.
+Be patient, the deployment process will average ~20 min.
+
+:white_check_mark: Now you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
 Just open a Browser with the IP.
 
-### Next Run A Pipeline
+### :arrow_right: Next Run A Pipeline
 
 Click on **"Jenkins"**
 
@@ -223,11 +230,44 @@ After selecting the pipeline click **"build"**
 
 <img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
 
+Now we can follow the next steps to review the Pipelines and understand the different scenerios.
+Just follow the arrows.
+
+### 1 - Review the Pipelines
+
 :arrow_right: [Review Pipelines](#the-sample-pipelines)
 
-### Next Review and understand the problem scenerios
+### 2 - Review and understand the problem scenerios
 
 :arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
+
+### 3 - Understanding and setup for Load Testing
+
+:arrow_right: [Load Test Analysis Performance Issue](doc/index-2.md)
+
+### 4 - SLO's and Test Analysis
+
+:arrow_right: [SLOs and Load Test Analysis Error Issue](doc/index-3.md)
+
+### 5 - PostFlight Git update
+
+:arrow_right: [Upstream git](#post-flight-git)
+
+### 6 - Available builds, problem patters and scenerios for Sockshop
+:arrow_right: https://github.com/keptn/examples used for the sockshop app
+
+### 7 - Easytravel app
+
+Easytravel is still experimental.
+The app works and the loadgen drives load to the services.
+
+TODO: drive load to UEM and make problem patterns dynamic.
+
+TODO: create jmeter load scripts.
+
+
+
+## Further reading to understand the installed modules and troubleshooting steps.
 
 #####  The installed modules
 
@@ -286,19 +326,22 @@ The script will install all the modules shown above and the github repository wi
 
 >The script was first created  to be run as root without an interactive shell since it is passed as userdata on creation of the elastic cloud machine via a python rest automation program.
 
-## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding it's credentials
+## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding creating your credentials
 
-- Add the Dynatrace information to the variables:
+- Use the Dynatrace information for the inputs to the script:
 
-	- TENANT="https://mytenant.live.dynatrace.com"
+	- TENANT="mytenant.live.dynatrace.com"
 	- PAASTOKEN=myDynatracePaaSToken
 	- APITOKEN=myDynatraceApiToken
 
-     > For Tenant add it with protocol like:
-     >  *https://{your-domain}/e/{your-environment-id}* 
+     > for your tenent just use the folowing:
+     >  *{your-domain}/e/{your-environment-id}* 
      > for managed or 
-     > https://{your-environment-id}.live.dynatrace.com 
-     > for SaaS
+     > {your-environment-id}.live.dynatrace.com 
+     > for SaaS.
+     > You can also use 
+     > {your-environment-id}.sprint.dynatracelabs.com
+     > or a dev tenant if inclined.
 
 ## Create Tokens
 
@@ -326,6 +369,7 @@ For more details on the Integration with Dynatrace read the following links:
 
 With the **installationModulesDefault** or **installationModulesFull** Dynatrace is automatically installed if the credentials are configured.
 
+:arrow_right:  [Back](#create-tokens)
 
 ## Other installation options
 ### Spin your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
@@ -394,6 +438,8 @@ For example triggering the first quality gate and evaluating a service will look
 5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
 6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
+:arrow_right:  [Back](#2---review-and-understand-the-problem-scenerios)
+
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
 To make it easier, I created a script you can execute to add to the upstream git repo.
@@ -402,6 +448,8 @@ Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run
 ```bash
 ./update-git-keptn-post-flight.sh
 ```
+
+:arrow_right:  [Back](#further-reading-to-understand-the-installed-modules-and-troubleshooting-steps)
 
 ### Change your own Domain
 By default the Script will get the public ip and give it a magic domain with nip.io like ip=1.2.3.4 will become 1-2-3-4.nip.io. This way with an NGINX Ingress Keptn and all Istio and Kubernetes services are available with subdomains via the standard HTTP ports 443 and 80.
@@ -444,7 +492,7 @@ This are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="release-0.8pre"
+KIAB_RELEASE="main"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 KEPTN_VERSION=0.8.1
@@ -453,8 +501,8 @@ KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="release-0.8.1"
 KEPTN_EXAMPLES_DIR="~/examples"
-KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
-KEPTN_CATALOG_BRANCH="rc8-pre"
+KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
+KEPTN_CATALOG_BRANCH="main"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
@@ -497,7 +545,6 @@ cd ~
 sudo bash -c './keptn-in-a-box.sh'
 ```
 
-
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
 This project was first presented to the Keptn Community in a Keptn Developer Meeting on the 23rd of April 2020.
@@ -512,10 +559,7 @@ Join the [Keptn Community](https://github.com/keptn/community) for more interest
 #### On a high level Kubernetes architecture this is how the setup of the Microkubernetes machine is setted up:
 ![#](doc/images/micro-diagram-with-keptn.png)
 
-## Available builds, problem patters and scenerios
-https://github.com/keptn/examples used for the sockshop app
 
-## Proceed to Next Steps
 ### What we deployed
 
 KIAB (Keptn in a Box)
