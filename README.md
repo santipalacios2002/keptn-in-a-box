@@ -424,7 +424,7 @@ For example triggering the first quality gate and evaluating a service will look
 5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
 6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
-:arrow_right:  [Back](#review-and-understand-the-problem-scenerios)
+:arrow_right:  [Back](#2---review-and-understand-the-problem-scenerios)
 
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
