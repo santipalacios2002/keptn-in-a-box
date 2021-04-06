@@ -254,7 +254,14 @@ Just follow the arrows.
 :arrow_right: [Upstream git](#post-flight-git)
 
 ### 6 - Available builds, problem patters and scenerios for Sockshop
-https://github.com/keptn/examples used for the sockshop app
+:arrow_right: https://github.com/keptn/examples used for the sockshop app
+
+### 7 - Easytravel app
+
+Easytravel is still experimental.
+The app works and the loadgen drives load to the services.
+TODO: drive load to UEM and make problem patterns dynamic.
+TODO: create jmeter load scripts.
 
 ## Further reading to understand the installed modules and troubleshooting steps.
 
