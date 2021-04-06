@@ -249,6 +249,10 @@ Just follow the arrows.
 
 :arrow_right: [SLOs and Load Test Analysis Error Issue](doc/index-3.md)
 
+### 5 - PostFlight Git update
+
+:arrow_right: [Upstream git](#post-flight-git)
+
 ## Further reading to understand the installed modules and troubleshooting steps.
 
 #####  The installed modules
@@ -320,10 +324,10 @@ The script will install all the modules shown above and the github repository wi
      >  *{your-domain}/e/{your-environment-id}* 
      > for managed or 
      > {your-environment-id}.live.dynatrace.com 
-     > for SaaS
-     > you can also use 
+     > for SaaS.
+     > You can also use 
      > {your-environment-id}.sprint.dynatracelabs.com
-     > or dev tenant if inclined.
+     > or a dev tenant if inclined.
 
 ## Create Tokens
 
@@ -419,6 +423,8 @@ For example triggering the first quality gate and evaluating a service will look
 4. 02-qualitygate-evaluation -  will do only the evaluation of the given service and timeframe
 5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
 6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
+
+:arrow_right:  [Back](#review-and-understand-the-problem-scenerios)
 
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
