@@ -265,6 +265,8 @@ TODO: drive load to UEM and make problem patterns dynamic.
 
 TODO: create jmeter load scripts.
 
+
+
 ## Further reading to understand the installed modules and troubleshooting steps.
 
 #####  The installed modules
@@ -490,7 +492,7 @@ This are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="release-0.8pre"
+KIAB_RELEASE="main"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 KEPTN_VERSION=0.8.1
@@ -499,8 +501,8 @@ KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="release-0.8.1"
 KEPTN_EXAMPLES_DIR="~/examples"
-KEPTN_CATALOG_REPO="https://github.com/dthotday-performance/overview.git"
-KEPTN_CATALOG_BRANCH="rc8-pre"
+KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
+KEPTN_CATALOG_BRANCH="main"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"

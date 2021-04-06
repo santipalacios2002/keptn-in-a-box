@@ -85,6 +85,6 @@ Pre-configured items also include:
 
 Now that we are more familiar with what we have running, Let's continue.
 
-### [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre#3---understanding-and-setup-for-load-testing).
+### [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main#3---understanding-and-setup-for-load-testing).
 
 
