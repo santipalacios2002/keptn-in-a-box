@@ -200,7 +200,7 @@ This will bring us to the **Failure analysis** screen.   We can see all the fail
 -  We covered the Performance Test Dashboard with Transaction Steps and SLOs and how you can use it for improving of your Performance Test Analysis
 -  We learned how to analyze Performance Test issue within Dynatrace and get to root cause in minutes
 
-### Questions and Answers? 
+Let's [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre#5---postflight-git-update)
 
 
 

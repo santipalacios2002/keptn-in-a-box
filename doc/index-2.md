@@ -277,6 +277,6 @@ In the **Method hotspots** screen click on **Hotspots** button.   This will chan
 -  We covered the Performance Test Dashboard with Transaction Steps and how you can use it for improving of your Performance Test Analysis
 -  We learned how to analyze Performance Test issue within Dynatrace and get to root cause in minutes
 
-### Questions and Answers? 
+Let's [continue](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre#4---slos-and-test-analysis)
 
 
