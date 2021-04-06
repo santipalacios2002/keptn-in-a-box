@@ -233,6 +233,10 @@ After selecting the pipeline click **"build"**
 
 :arrow_right: [Load Test Analysis Performance Issue](doc/index-2.md)
 
+### Next SLO's and Test Analysis
+
+:arrow_right: [SLOs and Load Test Analysis Error Issue](doc/index-3.md)
+
 #####  The installed modules
 
 The default installation is **installationBundleAll** which sets the control flags to true or false for the following modules:
