@@ -151,7 +151,7 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 4200/Custom
 
 ### Next
-:white_check_mark:[Create Tokens](#create-tokens)
+:white_check_mark: [Create Tokens](#create-tokens)
 
 ## :white_check_mark: Get started in 1 - 2 - 3 - 4
 
