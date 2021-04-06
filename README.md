@@ -137,9 +137,10 @@ The minimum required for running the default modules is t2.2xlarge with 30 Gigs 
 
 1. Ubuntu 20.04 LTS is recommended.
 
-2. Set the storage size to at least 40 GB.
+2. Set the storage size to at least 60 GB.
 
 3. Add a tag with key=Project and value=KIAB
+3.1 Add a tag with Key=Name and Value=<FirstName-LastName>
 
 4. Open Ports <br>
 If you define security rules in the Cloud provider or on your datacenter, your instance needs to have the following ports accessible:
