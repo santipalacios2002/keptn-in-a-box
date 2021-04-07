@@ -820,7 +820,7 @@ keptndemoCartsonboard() {
   if [ "$keptndemo_cartsonboard" = true ]; then
     printInfoSection "Keptn onboarding Carts"
     printInfoSection "Prep Files..."
-    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh"
+    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash chmod +x $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh"
     #TODO Parameterize Carts Version.
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh" 
     printInfoSection "Keptn onboarding Carts QualityGates"
