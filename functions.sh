@@ -871,6 +871,8 @@ keptndemoEasytravelonboard() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
+    printInfoSection "easytrvel loadgen"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh $(DOMAIN) loadgen"
   fi
 }
 
