@@ -4,7 +4,7 @@
 # Use this script to reset the environment
 #
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
-KIAB_RELEASE="release-0.8pre"
+KIAB_RELEASE="main"
 KIAB_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh"
 
 sudo snap remove microk8s --purge
