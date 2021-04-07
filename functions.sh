@@ -522,7 +522,8 @@ istioInstall() {
     mv istio-$ISTIO_VERSION /opt/istio-$ISTIO_VERSION
     chmod +x -R /opt/istio-$ISTIO_VERSION/
     ln -s /opt/istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin/istioctl
-    bashas "echo 'y' | istioctl install --set meshConfig.outboundTrafficPolicy.mode=ALLOW_ANY"
+    #bashas "echo 'y' | istioctl install --set meshConfig.outboundTrafficPolicy.mode=ALLOW_ANY"
+    bashas "echo 'y' | istioctl install"
     #bashas "echo 'y' | istioctl manifest apply --force"
     waitForAllPods
   fi
