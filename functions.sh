@@ -938,7 +938,7 @@ createWorkshopUser() {
 
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
-    bashas "sudo chown -f -R ubuntu ~/.kube"
+    bashas "chown -f -R ${USER} ~/.kube"
   fi
 }
 
