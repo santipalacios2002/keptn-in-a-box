@@ -476,9 +476,10 @@ For example triggering the first quality gate and evaluating a service will look
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
 To make it easier, I created a script you can execute to add to the upstream git repo.
-Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
+Here is the helper script. 
 
 ```bash
+cd ~$KEPTN_IN_A_BOX_DIR/resources/gitea
 ./update-git-keptn-post-flight.sh <DOMAIN>
 ```
 **The Domain is required**
