@@ -133,7 +133,7 @@ The minimum required for running the default modules is t2.large with 13 Gigs of
 ### :white_check_mark: installationBundleAll
 The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
 
-### Setup and Configure AWS Instance.
+## :arrow_right: Setup and Configure AWS Instance.
 
 1. Ubuntu 20.04 LTS is recommended.
 
@@ -152,10 +152,10 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### Create Tokens
+### :arrow_right: Create Tokens
 Next You will need to create the necessary tokens. 
 
-:arrow_right:  [Create Tokens](#create-tokens-1)
+How to [Create Tokens](#create-tokens-1)
 
 Now you are ready to start the install process.
 
@@ -164,6 +164,12 @@ Now you are ready to start the install process.
 ### Run it in an available machine  (manually)
 
 #### 1. Log in into  your Ubuntu image
+
+If you use a authentication key
+```bash
+ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
+```
+
 #### 2. Get the script
 
 ```bash
@@ -233,6 +239,8 @@ After selecting the pipeline click **"build"**
 Now we can follow the next steps to review the Pipelines and understand the different scenerios.
 Just follow the arrows.
 
+## :white_check_mark: Understanding Demo Flows and the Deployment
+
 ### 1 - Review the Pipelines
 
 :arrow_right: [Review Pipelines](#the-sample-pipelines)
@@ -266,9 +274,9 @@ The loadgen to the www-staging also works.
 
 You will need to create application detection rules, as these cannot be created by the API.
 
-1. All domains containing easytravel-angular.easytravel-production
-1. All domains that match easytravel-angular.easytravel-staging
-1. All domains that match easytravel-www.easytravel-staging.
+- All domains containing easytravel-angular.easytravel-production
+- All domains that match easytravel-angular.easytravel-staging
+- All domains that match easytravel-www.easytravel-staging
 
 Unfortunately, there is an issue with the deployment of the www service in production.
 
@@ -276,14 +284,19 @@ TODO: drive load to UEM and make problem patterns dynamic.
 
 TODO: create jmeter load scripts.
 
-### 8. Next Steps
+### 8 - Next Steps
 
 1. Verify Dynatrace config items.
 1. Verify application deployments in the Keptn bridge.
-1. if necessary, use Jenkins pipelines to deploy application services. Carts for example does not always deploy cleanly.
-1. Use Jenkins to drive load against the KeptOrders application.  I run this a few times.
+1. if necessary, use Jenkins pipelines to deploy application services. 
+   - Carts for example does not always deploy cleanly.
+1. Use Jenkins to drive load against the KeptOrders application.  
+   - I run this a few times.
 1. You may need to set the Anomaly detection, for services, to have a sensitivity of "high" for failure rates.
-1. Exclude the loadgen processes from monitoring in Dynatrace
+1. Exclude the loadgen processes from monitoring in Dynatrace.
+1. Check out your KIAB homepage and explore the links.
+1. Explore the dashboards in Dynatrace.
+1. Have some fun....
 
 
 ## Further reading to understand the installed modules and troubleshooting steps.
@@ -370,6 +383,7 @@ Log in to your Dynatrace tenant and go to **Settings > Integration > Dynatrace A
 
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
 
+TODO: API configuration for new API token interface, standby.
 ### Configure the API Token
 <img src="doc/images/API_token.png" width="300"/>
 
@@ -462,9 +476,10 @@ For example triggering the first quality gate and evaluating a service will look
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
 To make it easier, I created a script you can execute to add to the upstream git repo.
-Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
+Here is the helper script. 
 
 ```bash
+cd ~$KEPTN_IN_A_BOX_DIR/resources/gitea
 ./update-git-keptn-post-flight.sh <DOMAIN>
 ```
 **The Domain is required**
