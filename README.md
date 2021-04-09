@@ -280,8 +280,10 @@ TODO: create jmeter load scripts.
 
 1. Verify Dynatrace config items.
 1. Verify application deployments in the Keptn bridge.
-1. if necessary, use Jenkins pipelines to deploy application services. Carts for example does not always deploy cleanly.
-1. Use Jenkins to drive load against the KeptOrders application.  I run this a few times.
+1. if necessary, use Jenkins pipelines to deploy application services. 
+   - Carts for example does not always deploy cleanly.
+1. Use Jenkins to drive load against the KeptOrders application.  
+   - I run this a few times.
 1. You may need to set the Anomaly detection, for services, to have a sensitivity of "high" for failure rates.
 1. Exclude the loadgen processes from monitoring in Dynatrace
 
