@@ -259,12 +259,31 @@ Just follow the arrows.
 ### 7 - Easytravel app
 
 Easytravel is still experimental.
-The app works and the loadgen drives load to the services.
+
+The loadgen pods drive load to the staging and production angular frontends.
+
+The loadgen to the www-staging also works.
+
+You will need to create application detection rules, as these cannot be created by the API.
+
+1. All domains containing easytravel-angular.easytravel-production
+1. All domains that match easytravel-angular.easytravel-staging
+1. All domains that match easytravel-www.easytravel-staging.
+
+Unfortunately, there is an issue with the deployment of the www service in production.
 
 TODO: drive load to UEM and make problem patterns dynamic.
 
 TODO: create jmeter load scripts.
 
+### 8. Next Steps
+
+1. Verify Dynatrace config items.
+1. Verify application deployments in the Keptn bridge.
+1. if necessary, use Jenkins pipelines to deploy application services. Carts for example does not always deploy cleanly.
+1. Use Jenkins to drive load against the KeptOrders application.  I run this a few times.
+1. You may need to set the Anomaly detection, for services, to have a sensitivity of "high" for failure rates.
+1. Exclude the loadgen processes from monitoring in Dynatrace
 
 
 ## Further reading to understand the installed modules and troubleshooting steps.
