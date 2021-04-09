@@ -446,8 +446,9 @@ To make it easier, I created a script you can execute to add to the upstream git
 Here is the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run 
 
 ```bash
-./update-git-keptn-post-flight.sh
+./update-git-keptn-post-flight.sh <DOMAIN>
 ```
+**The Domain is required**
 
 :arrow_right:  [Back](#further-reading-to-understand-the-installed-modules-and-troubleshooting-steps)
 
