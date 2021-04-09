@@ -375,6 +375,7 @@ Log in to your Dynatrace tenant and go to **Settings > Integration > Dynatrace A
 
 Make sure you have the **Access problem and event feed, metrics, and topology** switch enabled for the API token.
 
+TODO: API configuration for new API token interface, standby.
 ### Configure the API Token
 <img src="doc/images/API_token.png" width="300"/>
 
