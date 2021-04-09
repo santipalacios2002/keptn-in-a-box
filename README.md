@@ -268,7 +268,7 @@ You will need to create application detection rules, as these cannot be created 
 
 1. All domains containing easytravel-angular.easytravel-production
 1. All domains that match easytravel-angular.easytravel-staging
-1. All domains that match easytravel-www.easytravel-staging.
+1. All domains that match easytravel-www.easytravel-staging
 
 Unfortunately, there is an issue with the deployment of the www service in production.
 
@@ -276,7 +276,7 @@ TODO: drive load to UEM and make problem patterns dynamic.
 
 TODO: create jmeter load scripts.
 
-### 8. Next Steps
+### 8 - Next Steps
 
 1. Verify Dynatrace config items.
 1. Verify application deployments in the Keptn bridge.
