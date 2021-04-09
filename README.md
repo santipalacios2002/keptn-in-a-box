@@ -152,10 +152,10 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### Create Tokens
+### :arrow_right: Create Tokens
 Next You will need to create the necessary tokens. 
 
-:arrow_right:  [Create Tokens](#create-tokens-1)
+How to [Create Tokens](#create-tokens-1)
 
 Now you are ready to start the install process.
 
@@ -164,6 +164,12 @@ Now you are ready to start the install process.
 ### Run it in an available machine  (manually)
 
 #### 1. Log in into  your Ubuntu image
+
+If you use a authentication key
+```bash
+ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
+```
+
 #### 2. Get the script
 
 ```bash
