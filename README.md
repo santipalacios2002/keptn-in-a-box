@@ -133,7 +133,7 @@ The minimum required for running the default modules is t2.large with 13 Gigs of
 ### :white_check_mark: installationBundleAll
 The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
 
-## Setup and Configure AWS Instance.
+## :arrow_right: Setup and Configure AWS Instance.
 
 1. Ubuntu 20.04 LTS is recommended.
 
