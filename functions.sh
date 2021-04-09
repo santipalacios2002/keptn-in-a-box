@@ -715,6 +715,8 @@ gitDeploy() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash deploy-gitea.sh ${DOMAIN}"
     waitForAllPods
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
+    GIT_SERVER="http://git.$DOMAIN"
+    waitForServersAvailability ${GIT_SERVER}
   fi
 }
 
@@ -879,10 +881,12 @@ keptndemoEasytravelonboard() {
 
 keptndemoEasytraveloadgen() {
   if [ "$keptndemo_easytraveloadgen" = true ]; then
-    printInfoSection "easytrvel loadgen"
+    printInfoSection "easytrvel loadgen staging"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
-    printInfoSection "easytrvel angular loadgen"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"    
+    printInfoSection "easytrvel angular loadgen staging"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
+    printInfoSection "easytrvel angular loadgen production"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"    
   fi
 }
 
@@ -991,7 +995,7 @@ printInstalltime() {
     printInfo "Password: ${NEWPWD}"
   fi
 
-  printInfoSection "Keptn in a Box $KIAB_RELEASE installation finished."
+  printInfoSection "Keptn in a Box $KIAB_RELEASE for keptn $KEPTN_VERSION installation finished."
   printInfo "Good luck in your Autonomous Cloud Journey!!"
   printInfo "If you faced an issue or just want to say hi, come by @ https://keptn.slack.com/"
 }
