@@ -99,7 +99,7 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
 
 ## 💾 Sizing
 
-This section will give you an idea the nedded size for your Box. But it all dependson the modules you want to install and what is your goal and usecase.
+This section will give you an idea the nedded size for your Box. But it all depends on the modules you want to install and what is your goal and usecase.
 The installer comes with 3 predefined modules: **minimal**, **default** and **full**. 
 
 ### 🕐 Installation time
